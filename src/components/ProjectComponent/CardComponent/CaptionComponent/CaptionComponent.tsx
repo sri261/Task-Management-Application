@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "./CaptionComponent.css";
 import { firestoreDB } from "../../../../firebase/firebaseIndex";
 function CaptionComponent() {
-  const handleSubmit = () => {
+  const [caption, setCaption] = useState("");
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(caption, "caption");
     firestoreDB
       .collection("card")
-      .doc("ID")
+      .doc(caption)
       .set({
-        caption: "new caprion",
+        caption: caption,
       })
       .then(() => {
         console.log("added to firestoreDB");
@@ -18,7 +21,13 @@ function CaptionComponent() {
   };
   return (
     <div>
-      <button onClick={handleSubmit}>ADD</button>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Caption:
+          <input type="text" onChange={(e) => setCaption(e.target.value)} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 }
