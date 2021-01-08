@@ -5,6 +5,7 @@ import Signup from "./components/Signup/Signup";
 import "./App.css";
 import { firebaseAuth } from "./provider/AuthProvider";
 import ProjectComponent from "./components/ProjectComponent/ProjectComponent";
+import TestComp from "./components/TestComp";
 
 function App() {
   const { isAuthenticated, setIsAuthenticated } = useContext(firebaseAuth);
@@ -14,19 +15,20 @@ function App() {
   }
   console.log(isAuthenticated);
   return (
-    <>
-      <Switch>
-        {isAuthenticated.isAuthenticated ? (
-          <Route exact path="/" render={() => <ProjectComponent />} />
-        ) : null}
+    <ProjectComponent />
+    // <>
+    //   <Switch>
+    //     {isAuthenticated.isAuthenticated ? (
+    //       <Route exact path="/" render={() => <ProjectComponent />} />
+    //     ) : null}
 
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/signup" component={Signup} />
+    //     <Route exact path="/signin" component={Signin} />
+    //     <Route exact path="/signup" component={Signup} />
 
-        <Route path="" component={Signin} />
-      </Switch>
-      {/* <a href="/signup">Signup</a> */}
-    </>
+    //     <Route path="" component={Signin} />
+    //   </Switch>
+    //   {/* <a href="/signup">Signup</a> */}
+    // </>
   );
 }
 
