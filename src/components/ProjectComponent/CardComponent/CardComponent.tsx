@@ -13,8 +13,7 @@ function CardComponent() {
       <div className="card-component">
         Card
         <CaptionComponent />
-        {/* <AddCardComponent /> */}
-        <button onClick={handleClick}>Add Card</button>
+        {addCard != 1 ? <button onClick={handleClick}>Add Card</button> : null}
       </div>
       {addCard === 1 ? <CardComponent /> : null}
     </>
