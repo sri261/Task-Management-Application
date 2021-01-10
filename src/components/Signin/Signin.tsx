@@ -1,3 +1,4 @@
+import "./Signin.css";
 import React, { useContext, useState } from "react";
 import { firebaseAuth } from "../../provider/AuthProvider";
 import { auth } from "../../firebase/firebaseIndex";
@@ -23,11 +24,13 @@ const Signin = (props: any) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signin" onSubmit={handleSubmit}>
       Signin
       <input required name="email" placeholder="email" />
       <input required name="password" placeholder="password" type="password" />
-      <button type="submit">signin</button>
+      <button className="signin-button" type="submit">
+        Signin
+      </button>
       {error || null}
       <button
         onClick={() => {

@@ -1,0 +1,23 @@
+.signin {
+  position: relative;
+  top: 15vh;
+  left: 38.5vw;
+  width: 25vw;
+  height: 70vh;
+  background-color: white;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 2px 2px rgba(0, 0, 255, 0.2);
+  align-items: center;
+  justify-content: center;
+}
+.signin-button {
+  border-style: none;
+  padding: 10px 40px;
+
+  margin-bottom: 10%;
+  margin-top: 10%;
+  /* width: 50%; */
+}
