@@ -3,7 +3,7 @@
   height: 100vh;
   background-image: url(../../images/signin-signup-bg.gif);
 }
-.signin {
+.signup {
   position: relative;
   top: 15vh;
   left: 38.5vw;
@@ -15,26 +15,26 @@
   display: flex;
   flex-direction: column;
   box-shadow: 4px 4px 2px 2px rgba(0, 0, 255, 0.2);
-  border: 2px solid rgba(0, 0, 255, 0.2);
   align-items: center;
-  /* justify-content: center; */
+  /* box-shadow: 4px 4px 6px 6px rgba(0, 0, 255, 0.2); */
+  border: 2px solid rgba(0, 0, 255, 0.2);
 }
-.signin-button {
+.signup-button {
   border-style: none;
   padding: 10px 40px;
 
   margin-bottom: 10%;
   margin-top: 10%;
-  /* width: 50%; */
 }
-.signin-button:hover {
-  background-color: rgba(0, 0, 255, 0.2);
+
+.signup-button:hover {
+  background-color: pink;
 }
 .title {
   margin-top: 4rem;
 }
 input {
-  text-align: center;
+  /* border: none; */
   padding: 10px 25px;
   margin: 10px;
 }

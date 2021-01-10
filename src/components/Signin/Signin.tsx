@@ -24,22 +24,31 @@ const Signin = (props: any) => {
   };
 
   return (
-    <form className="signin" onSubmit={handleSubmit}>
-      Signin
-      <input required name="email" placeholder="email" />
-      <input required name="password" placeholder="password" type="password" />
-      <button className="signin-button" type="submit">
-        Signin
-      </button>
-      {error || null}
-      <button
-        onClick={() => {
-          props.history.push("/signup");
-        }}
-      >
-        Sign Up?
-      </button>
-    </form>
+    <div className="bg">
+      <form className="signin" onSubmit={handleSubmit}>
+        <h2 className="title"> SignIn</h2>
+
+        <input className="input" required name="email" placeholder="email" />
+        <input
+          className="input"
+          required
+          name="password"
+          placeholder="password"
+          type="password"
+        />
+        <button className="signin-button" type="submit">
+          Signin
+        </button>
+        {error || null}
+        <a
+          onClick={() => {
+            props.history.push("/signup");
+          }}
+        >
+          Create new account?
+        </a>
+      </form>
+    </div>
   );
 };
 

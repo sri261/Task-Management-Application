@@ -1,3 +1,4 @@
+import "./Signup.css";
 import React, { useContext, useState } from "react";
 import { firebaseAuth } from "../../provider/AuthProvider";
 import { withRouter } from "react-router-dom";
@@ -23,20 +24,30 @@ const Signup = (props: any) => {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      SignUp
-      <input required name="email" placeholder="email" />
-      <input required name="password" placeholder="password" type="password" />
-      <button type="submit">SignUp</button>
-      {error || null}
-      <button
-        onClick={() => {
-          props.history.push("/signin");
-        }}
-      >
-        Sign In?
-      </button>
-    </form>
+    <div className="bg">
+      <form className="signup" onSubmit={handleSubmit}>
+        <h2 className="title">SignUp</h2>
+        <input className="input" required name="email" placeholder="email" />
+        <input
+          className="input"
+          required
+          name="password"
+          placeholder="password"
+          type="password"
+        />
+        <button className="signup-button" type="submit">
+          SignUp
+        </button>
+        {error || null}
+        <a
+          onClick={() => {
+            props.history.push("/signin");
+          }}
+        >
+          Already have an account, SignIn
+        </a>
+      </form>
+    </div>
   );
 };
 
