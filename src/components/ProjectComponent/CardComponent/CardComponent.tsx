@@ -3,7 +3,7 @@ import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
 import CaptionComponent from "./CaptionComponent/CaptionComponent";
 
-function CardComponent() {
+function CardComponent(p: any) {
   const [addCard, setAddCard] = useState(0);
   const handleClick = () => {
     setAddCard(1);
