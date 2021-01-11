@@ -24,13 +24,14 @@ function CaptionComponent() {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Caption:
-          <input type="text" onChange={(e) => setCaption(e.target.value)} />
-        </label>
+      {/* <form onSubmit={handleSubmit}>
+        <input
+          className="caption"
+          type="text"
+          onChange={(e) => setCaption(e.target.value)}
+        />
         <input type="submit" value="Submit" />
-      </form>
+      </form> */}
     </div>
   );
 }

@@ -41,13 +41,15 @@ function ProjectComponent() {
   return (
     <div className="project-component">
       <ProjectTopBarComponent />
-      {loading === true
-        ? "loading..."
-        : firestoreData.map((item: any) => {
-            // return item
-            return <CardComponent />;
-          })}
-      {/* <CardComponent /> */}
+      <div className="card-container">
+        {loading === true
+          ? "loading..."
+          : firestoreData.map((item: any) => {
+              // return item
+              return <CardComponent />;
+            })}
+        {/* <CardComponent /> */}
+      </div>
     </div>
   );
 }

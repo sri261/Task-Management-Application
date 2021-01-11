@@ -2,3 +2,9 @@
   width: 100vw;
   height: 100vh;
 }
+.card-container {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
