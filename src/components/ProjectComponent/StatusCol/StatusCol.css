@@ -1,0 +1,17 @@
+.statuscol-col {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+.statuscol-col {
+}
+
+.statuscol-col .add-card {
+  text-decoration: none;
+  color: #c2c7d3e7;
+  text-align: center;
+  cursor: pointer;
+}
+.statuscol-col .add-card:hover {
+  color: black;
+}

@@ -5,7 +5,6 @@ function ProjectTopBarComponent() {
   return (
     <div className="project-top-bar">
       <h1>Project Name</h1>
-      <h2>icons</h2>
 
       <button
         onClick={() => {
