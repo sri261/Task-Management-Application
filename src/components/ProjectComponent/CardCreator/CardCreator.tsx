@@ -45,10 +45,10 @@ function CardCreator() {
           }}
         >
           <option>Select Option</option>
-          <option value="task-ready">Task Ready</option>
-          <option value="in-progress">In Progress</option>
-          <option value="needs-review">Needs Review</option>
-          <option value="done">Done</option>
+          <option value="Task Ready">Task Ready</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Needs Review">Needs Review</option>
+          <option value="Done">Done</option>
         </select>
         <button type="submit">Done</button>
       </form>

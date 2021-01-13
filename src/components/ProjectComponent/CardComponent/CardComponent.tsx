@@ -16,6 +16,10 @@ function CardComponent(props: any) {
 
       <div className="card-component">
         {/* <CaptionComponent />  */}
+        <div className="card-top-bar">
+          <h5>Tag</h5>
+          <div>...</div>
+        </div>
         <p>{props.caption} </p>
         <div className="icons-bar">
           <a className="icon" href="">

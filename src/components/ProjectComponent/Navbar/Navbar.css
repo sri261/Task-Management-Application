@@ -1,0 +1,30 @@
+.navbar {
+  background-color: #f8f6fc;
+  height: 50px;
+  width: 100%;
+  border-bottom: solid 1px white;
+  border-top: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  height: 65%;
+  margin-left: 35px;
+}
+
+.navbar-signout-btn {
+  border: none;
+  margin-right: 35px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color, color, 0.25s;
+  border: solid 0.3px white;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.navbar-signout-btn:hover {
+  background-color: #db3fa2;
+  color: white;
+}

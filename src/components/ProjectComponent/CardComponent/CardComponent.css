@@ -1,25 +1,39 @@
 .card-component {
-  width: 270px;
-  height: 120px;
+  /* width: 270px; */
+  min-height: 130px;
   background-color: white;
-  border-radius: 20px;
-  margin: 10px;
-  box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-top: 15px;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
-.card-component a {
-  text-decoration: none;
-  color: #c2c7d3;
+.card-top-bar {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
+  padding: 5px 20px;
+}
+.card-component p {
+  padding: 20px;
 }
 
 .icons-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+.card-component a {
+  text-decoration: none;
+  color: #c2c7d3;
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 6%;
 }
 
 .icon:hover {

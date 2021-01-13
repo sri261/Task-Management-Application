@@ -2,16 +2,20 @@
   display: flex;
   flex-direction: column;
   width: 25%;
-}
-.statuscol-col {
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .statuscol-col .add-card {
   text-decoration: none;
-  color: #c2c7d3e7;
+  color: #747474af;
   text-align: center;
   cursor: pointer;
+  margin-top: 20px;
 }
 .statuscol-col .add-card:hover {
   color: black;
+}
+.statuscol-col h4 {
+  font-weight: 500;
 }

@@ -1,18 +1,8 @@
-/* .project-component {
-  width: 100vw;
-  height: 100vh;
-} */
-/* .card-container {
-  justify-content: space-evenly;
-  margin: 30px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-} */
-
 .status-cols {
-  /* display: grid; */
-  /* grid-template-columns: 1fr, 1fr, 1fr, 1fr; */
   display: flex;
   flex-direction: row;
+}
+.project-component-sub {
+  margin-left: 25px;
+  margin-right: 25px;
 }

@@ -23,8 +23,6 @@ function StatusCol(props: any) {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // final.push(doc.data().caption);
-          // console.log(doc.data().status);
           final.push([doc.data().caption, doc.data().status]);
           console.log(final);
         });
@@ -41,17 +39,15 @@ function StatusCol(props: any) {
   }, []);
   return (
     <div className="statuscol-col">
-      <h3>{props.status}</h3>
+      <h4>{props.status}</h4>
 
       <div className="card-container">
         {loading === true
           ? "loading..."
           : firestoreData.map((item: any) => {
-              // console.log(item);
               return item[1] === props.status ? (
                 <CardComponent caption={item[0]} />
               ) : null;
-              // return <CardComponent caption={item[0]} />;
             })}
       </div>
 

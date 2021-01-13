@@ -6,13 +6,13 @@ function ProjectTopBarComponent() {
     <div className="project-top-bar">
       <h1>Project Name</h1>
 
-      <button
+      {/* <button
         onClick={() => {
           auth().signOut();
         }}
       >
         Signout
-      </button>
+      </button> */}
     </div>
   );
 }
