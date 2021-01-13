@@ -33,8 +33,9 @@
 .title {
   margin-top: 4rem;
 }
-input {
-  /* border: none; */
-  /* padding: 10px 25px; */
-  /* margin: 10px; */
+.input {
+  border: solid 0.3px #c2c7d3;
+  padding: 10px 25px;
+  margin: 10px;
+  border-radius: 5px;
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
-import CaptionComponent from "./CaptionComponent/CaptionComponent";
 import { FaCommentAlt } from "react-icons/fa";
 import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
+import Tag from "../Tag/Tag";
 
 function CardComponent(props: any) {
   return (
@@ -15,9 +15,8 @@ function CardComponent(props: any) {
       {addCard === 1 ? <CardComponent /> : null} */}
 
       <div className="card-component">
-        {/* <CaptionComponent />  */}
         <div className="card-top-bar">
-          <h5>Tag</h5>
+          <Tag tag={props.tag} />
           <div>...</div>
         </div>
         <p>{props.caption} </p>
