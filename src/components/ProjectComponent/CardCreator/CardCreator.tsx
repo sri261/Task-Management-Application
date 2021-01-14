@@ -8,23 +8,22 @@ function CardCreator() {
   const [caption, setCaption] = useState("");
   const [status, setStatus] = useState("");
   const [tag, setTag] = useState("");
+  const [show, setShow] = useState(false);
 
   const firestore = useFirestore();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // console.log("caption=>", caption);
-    // console.log("status=>", status);
-
+    setShow(false);
     firestore
       .collection("card")
-      .doc(caption)
+      // .doc(caption)
+      .doc()
       .set({
         caption: caption,
         timestamp: Date(),
         status: status,
         tag: tag,
-        //  Date.prototype.getMonth(),
       })
       .then(() => {
         console.log("added to firestoreDB");
@@ -35,61 +34,65 @@ function CardCreator() {
   };
 
   return (
-    <div className="card-creator">
-      <form onSubmit={handleSubmit}>
-        <div className="cardcreator-top-bar">
-          <h4>Create new Card</h4>
-          <div className="cardcreator-top-bar-close">
-            <AiOutlineClose />
-          </div>
+    <div>
+      {show ? (
+        <div className="card-creator">
+          <form onSubmit={handleSubmit}>
+            <div className="cardcreator-top-bar">
+              <h4>Create new Card</h4>
+              <div
+                className="cardcreator-top-bar-close"
+                onClick={() => {
+                  setShow(false);
+                }}
+              >
+                <AiOutlineClose />
+              </div>
+            </div>
+            {/* =================== Input text box ========================== */}
+
+            <input
+              type="text"
+              onChange={(e) => {
+                setCaption(e.target.value);
+              }}
+              placeholder="What is the new task?"
+              required
+            />
+            {/* =================== Select task dropdown ========================== */}
+            <select
+              onChange={(e) => {
+                setStatus(e.target.value);
+              }}
+            >
+              <option>Select Task Progress</option>
+              <option value="Task Ready">Task Ready</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Needs Review">Needs Review</option>
+              <option value="Done">Done</option>
+            </select>
+            {/* ==================== Select tag dropdown ========================= */}
+
+            <select
+              onChange={(e) => {
+                setTag(e.target.value);
+              }}
+            >
+              <option>Select Task Tag</option>
+              <option value="UI Design">UI Design</option>
+              <option value="Copywritng">Copywritng</option>
+              <option value="Illustration">Illustration</option>
+              <option value="Code">Code</option>
+            </select>
+
+            <button type="submit">
+              <h6>Done</h6>
+            </button>
+          </form>
         </div>
-        {/* =================== Input text box ========================== */}
-
-        <input
-          type="text"
-          onChange={(e) => {
-            setCaption(e.target.value);
-          }}
-          placeholder="What is the new task?"
-        />
-        {/* =================== Select task dropdown ========================== */}
-        <select
-          onChange={(e) => {
-            setStatus(e.target.value);
-          }}
-        >
-          <option>Select Task Progress</option>
-          <option value="Task Ready">Task Ready</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Needs Review">Needs Review</option>
-          <option value="Done">Done</option>
-        </select>
-        {/* ==================== Select tag dropdown ========================= */}
-
-        <select
-          onChange={(e) => {
-            setTag(e.target.value);
-          }}
-        >
-          <option>Select Task Tag</option>
-          <option value="UI Design">UI Design</option>
-          <option value="Copywritng">Copywritng</option>
-          <option value="Illustration">Illustration</option>
-          <option value="Code">Code</option>
-        </select>
-        {/* ============================================= */}
-
-        {/* <div onClick={handleTagClick}>
-          <Tag tag={"UI Design"} />
-          <Tag tag={"Copywritng"} />
-          <Tag tag={"Illustration"} />
-          <Tag tag={"Code"} />
-        </div> */}
-
-        <button type="submit">
-          <h6>Done</h6>
-        </button>
-      </form>
+      ) : (
+        <div onClick={() => setShow(true)}>"+ Add Card"</div>
+      )}
     </div>
   );
 }

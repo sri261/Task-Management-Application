@@ -25,18 +25,26 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  color: #c2c7d3;
 }
-.card-component a {
+.icon {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 6%;
+}
+/* .card-component a {
   text-decoration: none;
   color: #c2c7d3;
   display: flex;
   align-items: center;
   margin-top: 2%;
   margin-bottom: 6%;
-}
+} */
 
 .icon:hover {
   color: black;
+  cursor: pointer;
 }
 .icon-info {
   margin-left: 10px;

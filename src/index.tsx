@@ -9,6 +9,7 @@ import AuthProvider from "./provider/AuthProvider";
 import store from "./Redux/store";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { rrfProps } from "./firebase/firebaseIndex";
+
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
@@ -23,5 +24,22 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
+
+// ==============================================================
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <React.StrictMode>
+//       <AuthProvider>
+//         <Provider store={store}>
+//           <ReactReduxFirebaseProvider {...rrfProps}>
+//             <Apps />
+//           </ReactReduxFirebaseProvider>
+//         </Provider>
+//       </AuthProvider>
+//     </React.StrictMode>
+//   </BrowserRouter>,
+//   document.getElementById("root")
+// );
+// ==============================================================
 
 reportWebVitals();

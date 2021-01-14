@@ -23,9 +23,16 @@ function StatusCol(props: any) {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          final.push([doc.data().caption, doc.data().status, doc.data().tag]);
+          console.log(doc.id);
+          final.push([
+            doc.data().caption,
+            doc.data().status,
+            doc.data().tag,
+            doc.data().timestamp,
+          ]);
           // console.log(final);
         });
+
         setFirestoreData(final);
         setLoading(false);
       })
@@ -37,6 +44,14 @@ function StatusCol(props: any) {
   useEffect(() => {
     fetchCaptions();
   }, []);
+
+  const showClose = () => {
+    if (show) {
+      setShow(false);
+    } else if (show === false) {
+      setShow(true);
+    }
+  };
   return (
     <div className="statuscol-col">
       <h4>{props.status}</h4>
@@ -46,13 +61,17 @@ function StatusCol(props: any) {
           ? "loading..."
           : firestoreData.map((item: any) => {
               return item[1] === props.status ? (
-                <CardComponent caption={item[0]} tag={item[2]} /> //<<<<------add tag here
+                <CardComponent
+                  caption={item[0]}
+                  tag={item[2]}
+                  timestamp={item[3]}
+                />
               ) : null;
             })}
       </div>
 
-      <div className="add-card" onClick={() => setShow(true)}>
-        {show ? <CardCreator /> : null}+ Add Card
+      <div className="add-card">
+        <CardCreator />
       </div>
     </div>
   );
