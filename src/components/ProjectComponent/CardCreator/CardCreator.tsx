@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./CardCreator.css";
 import { useFirestore } from "react-redux-firebase";
 import { AiOutlineClose } from "react-icons/ai";
-import Tag from "../Tag/Tag";
+import { firestoreDB } from "../../../firebase/firebaseIndex";
 
 function CardCreator() {
   const [caption, setCaption] = useState("");
@@ -10,18 +10,21 @@ function CardCreator() {
   const [tag, setTag] = useState("");
   const [show, setShow] = useState(false);
 
-  const firestore = useFirestore();
+  // const firestore = useFirestore();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setShow(false);
-    firestore
+    const timestamp = new Date();
+    const timestampOnCard = timestamp.getFullYear();
+    console.log(timestampOnCard);
+    firestoreDB
       .collection("card")
       // .doc(caption)
       .doc()
       .set({
         caption: caption,
-        timestamp: Date(),
+        timestamp: timestampOnCard,
         status: status,
         tag: tag,
       })

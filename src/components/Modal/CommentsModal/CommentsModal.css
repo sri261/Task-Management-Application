@@ -1,0 +1,20 @@
+.comment-modal {
+  background-color: #f8f6fc;
+  width: 50vw;
+  height: 65vh;
+  /* margin-top: 4%; */
+  border-radius: 15px;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
+
+  border: solid 1px #f4e9f2;
+}
+.comment-modal-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 20px;
+}
+.comment-modal-heading {
+  font-size: 125%;
+  letter-spacing: 1px;
+}

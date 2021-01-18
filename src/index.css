@@ -9,7 +9,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f1f2f3;
+  /* background-color: #f1f2f3; */
+  background: linear-gradient(
+    90deg,
+    rgba(236, 238, 249, 1) 5%,
+    rgba(240, 236, 246, 1) 75%,
+    rgba(242, 235, 244, 1) 82%,
+    rgba(242, 235, 244, 1) 83%,
+    rgba(244, 233, 242, 1) 95%,
+    rgba(244, 233, 242, 1) 98%,
+    rgba(247, 231, 240, 1) 100%
+  );
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -5,18 +5,18 @@ function Tag(props: any) {
   const assignColor = () => {
     if (props.tag === "Code") {
       return {
-        background: "pink",
-        color: "rgb(231, 0, 39)",
+        background: "#fabfc9",
+        color: "Red",
       };
     } else if (props.tag === "UI Design") {
       return {
         background: "#bce2f4",
-        color: "#3789b7",
+        color: "rgb(33 119 168)",
       };
     } else if (props.tag === "Illustration") {
       return {
         background: "#d3ebe3",
-        color: "#258555",
+        color: "rgb(21 123 72)",
       };
     } else {
       return {

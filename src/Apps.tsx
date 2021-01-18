@@ -6,12 +6,11 @@ import Signup from "./components/Signup/Signup";
 import "./App.css";
 import { firebaseAuth } from "./provider/AuthProvider";
 import ProjectComponent from "./components/ProjectComponent/ProjectComponent";
-
 function App() {
   const { isAuthenticated, setIsAuthenticated } = useContext(firebaseAuth);
 
   if (isAuthenticated.loading) {
-    return <div>Loading...</div>;
+    return <div>Loading ...</div>;
   }
   console.log(isAuthenticated);
   return (
