@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 import { FaCommentAlt } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
@@ -7,13 +7,15 @@ import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
 import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
 import Tag from "../Tag/Tag";
-import { ProjectContext } from "../ProjectComponent";
+import { ModalState } from "../../../store/types";
+import { changeModalActionMethod } from "../../../store/actions/actions";
 
 function CardComponent(props: any) {
+  const modalState = useSelector<ModalState>((state) => state.show);
+  const dispatch = useDispatch();
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
   const [cardID, setCardID] = useState();
-  const { showModal, setShowModal } = useContext(ProjectContext);
 
   const pinClickHandler = () => {
     setPincount(pincount + 1);
@@ -63,8 +65,7 @@ function CardComponent(props: any) {
           <div
             className="icon comment-icon"
             onClick={() => {
-              setShowModal(true);
-              console.log("Comment Clicked");
+              dispatch(changeModalActionMethod(true));
             }}
           >
             <FaCommentAlt />
@@ -79,34 +80,6 @@ function CardComponent(props: any) {
       </div>
     </>
   );
-
-  // return (
-  //   <>
-  //     <div className="card-component">
-  //       <div className="card-top-bar">
-  //         <Tag tag={props.tag} />
-  //         <div>
-  //           <BsThreeDots />
-  //         </div>
-  //       </div>
-  //       <p>{props.caption} </p>
-  //       <div className="icons-bar">
-  //         <a className="icon" href="">
-  //           <AiFillFlag />
-  //           <span className="icon-info">12 Jan</span>
-  //         </a>
-  //         <a className="icon" href="">
-  //           <FaCommentAlt />
-  //           <span className="icon-info">4</span>
-  //         </a>
-  //         <a className="icon" href="">
-  //           <AiOutlinePaperClip className="icon" />
-  //           <span className="icon-info">2</span>
-  //         </a>
-  //       </div>
-  //     </div>
-  //   </>
-  // );
 }
 
 export default CardComponent;

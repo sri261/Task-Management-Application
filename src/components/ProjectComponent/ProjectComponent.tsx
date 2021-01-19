@@ -1,22 +1,22 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import ProjectTopBarComponent from "./ProjectTopBarComponent/ProjectTopBarComponent";
 import "./ProjectComponent.css";
 import StatusCol from "./StatusCol/StatusCol";
 import Navbar from "./Navbar/Navbar";
-import Modal from "../Modal/Modal";
-
-export const ProjectContext: any = React.createContext(false);
+import CommentsModal from "../Modal/CommentsModal/CommentsModal";
+import { ModalState } from "../../store/types";
 
 function ProjectComponent() {
-  const [showModal, setShowModal]: any = useState();
+  const modalState = useSelector<ModalState>((state) => state.show);
+
   return (
-    <ProjectContext.Provider value={{ showModal, setShowModal }}>
-      <div className="project-component">
-        <Navbar />
-        {showModal ? (
-          <Modal />
-        ) : (
+    <>
+      <div style={modalState ? { filter: "blur(2px)" } : {}}>
+        <div className="project-component">
+          <Navbar />
+
           <div className="project-component-sub">
             <ProjectTopBarComponent />
             <div className="status-cols">
@@ -26,17 +26,12 @@ function ProjectComponent() {
               <StatusCol status="Done" />
             </div>
           </div>
-        )}
-
-        {/* <button
-          onClick={() => {
-            showModal ? setShowModal(false) : setShowModal(true); /// temp for testing
-          }}
-        >
-          MODAL
-        </button> */}
+        </div>
       </div>
-    </ProjectContext.Provider>
+      <div className="project-component-modal">
+        {modalState ? <CommentsModal /> : null}
+      </div>
+    </>
   );
 }
 

@@ -8,12 +8,14 @@ import { BrowserRouter } from "react-router-dom";
 
 import AuthProvider from "./provider/AuthProvider";
 import store from "./store/store";
+import Test from "./Testing/Test";
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <AuthProvider>
         <Provider store={store}>
+          {/* <Test /> */}
           <Apps />
         </Provider>
       </AuthProvider>

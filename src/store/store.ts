@@ -1,7 +1,14 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-import rootReducer from "./reducers/rootReducer";
+import { modalReducer } from "./reducers/modalReducer";
+import { notesReducer } from "./reducers/notesReducer ";
 
-const store = createStore(rootReducer);
+// const rootReducer = combineReducers({
+//   modal: modalReducer,
+//   notes: notesReducer,
+// });
+// const store = createStore(notesReducer);
+
+const store = createStore(modalReducer);
 
 export default store;

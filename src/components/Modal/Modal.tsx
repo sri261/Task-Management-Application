@@ -1,23 +1,31 @@
 import React, { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { AiOutlineClose } from "react-icons/ai";
 
-import { ProjectContext } from "../ProjectComponent/ProjectComponent";
 import "./Modal.css";
+import { ModalState } from "../../store/types";
 import CommentsModal from "../Modal/CommentsModal/CommentsModal";
 
 function Modal() {
-  const { showModal, setShowModal } = useContext(ProjectContext);
-  // const counter: any = useSelector((state) => state);
-  // const dispatch = useDispatch();
-
+  const modalState = useSelector<ModalState>((state) => state.show);
+  const dispatch = useDispatch();
+  console.log(modalState);
   return (
     <div className="modal">
+      {/* <button
+        onClick={() => {
+          dispatch({ type: "MODAL", payload: true });
+          console.log(modalState);
+        }}
+      >
+        TEST MODAL STATE{" "}
+      </button> */}
+
       <div
         className="close-modal-icon"
         onClick={() => {
-          setShowModal(false);
+          dispatch({ type: "MODAL", payload: true });
+          console.log(modalState);
         }}
       >
         <AiOutlineClose />
