@@ -16,15 +16,15 @@ function CardCreator() {
     e.preventDefault();
     setShow(false);
     const timestamp = new Date();
-    const timestampOnCard = timestamp.getFullYear();
-    console.log(timestampOnCard);
+    // const timestampOnCard = timestamp.getDay();
+    // console.log(timestampOnCard);
     firestoreDB
       .collection("card")
       // .doc(caption)
       .doc()
       .set({
         caption: caption,
-        timestamp: timestampOnCard,
+        timestamp: timestamp.toString(),
         status: status,
         tag: tag,
       })
