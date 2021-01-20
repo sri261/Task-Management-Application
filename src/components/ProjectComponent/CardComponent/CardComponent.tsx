@@ -47,7 +47,10 @@ function CardComponent(props: any) {
         {/* ================= Caption Section============================ */}
         <div onClick={editCaptionFn}>
           {editCaption ? (
-            <div>Edit</div>
+            <div>
+              <input></input>
+              <button>Done</button>
+            </div>
           ) : (
             <div>
               <p>{props.caption} </p>

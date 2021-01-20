@@ -26,33 +26,12 @@ function StatusCol(props: any) {
     //   });
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    firestoreDB
-      .collection("card")
-      .where("status", "==", props.status)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          final.push([
-            doc.data().caption,
-            doc.data().status,
-            doc.data().tag,
-            doc.data().timestamp,
-            doc.id,
-          ]);
-          setFirestoreData(final);
-          setLoading(false);
-        });
-      });
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // firestore.collection("card").onSnapshot((querySnapshot) => {
     // firestoreDB
     //   .collection("card")
     //   .where("status", "==", props.status)
-    //   .onSnapshot((querySnapshot) => {
+    //   .get()
+    //   .then((querySnapshot) => {
     //     querySnapshot.forEach((doc) => {
-    //       // const date = new Date(doc.data().timestamp);
     //       final.push([
     //         doc.data().caption,
     //         doc.data().status,
@@ -60,11 +39,31 @@ function StatusCol(props: any) {
     //         doc.data().timestamp,
     //         doc.id,
     //       ]);
+    //       setFirestoreData(final);
+    //       setLoading(false);
     //     });
-
-    //     setFirestoreData(final);
-    //     setLoading(false);
     //   });
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // firestore.collection("card").onSnapshot((querySnapshot) => {
+    firestoreDB.collection("card").onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // const date = new Date(doc.data().timestamp);
+        if (doc.data().status == props.status) {
+          final.push([
+            doc.data().caption,
+            doc.data().status,
+            doc.data().tag,
+            doc.data().timestamp,
+            doc.id,
+          ]);
+        }
+      });
+
+      setFirestoreData(final);
+      setLoading(false);
+    });
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   };
 
@@ -81,9 +80,6 @@ function StatusCol(props: any) {
           <div className="loading-gif">Loading . . .</div>
         ) : (
           firestoreData.map((item: any) => {
-            {
-              console.log(item);
-            }
             return (
               <CardComponent
                 caption={item[0]}
