@@ -14,6 +14,7 @@ interface Authenticated {
 export const firebaseAuth = React.createContext({} as FirebaseContextType);
 
 const AuthProvider = (props: any) => {
+  // Limit useState to create state for single variable
   const [isAuthenticated, setIsAuthenticated] = useState({
     loading: true,
     isAuthenticated: false,

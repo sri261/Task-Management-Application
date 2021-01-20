@@ -16,6 +16,16 @@ function App() {
   return (
     <div>
       <Switch>
+        {/*
+          REVIEW: when you are not logged in redirect to login page. This code mounts project component and signin page on same path.
+          do something like
+          isLoggedIn === true ? (
+          // render project component
+        ) : (
+          //redirect to signin page
+          <Redirect to={{ pathname: "/login", state: { from: location } }} />
+        )
+        */}
         {isAuthenticated.isAuthenticated ? (
           <Route exact path="/" render={() => <ProjectComponent />} />
         ) : null}

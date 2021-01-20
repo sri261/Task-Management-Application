@@ -10,6 +10,7 @@ import Tag from "../Tag/Tag";
 import { ModalState } from "../../../store/types";
 import { changeModalActionMethod } from "../../../store/actions/actions";
 
+// REVIEW: Stay away from any
 function CardComponent(props: any) {
   const modalState = useSelector<ModalState>((state) => state.show);
   const dispatch = useDispatch();

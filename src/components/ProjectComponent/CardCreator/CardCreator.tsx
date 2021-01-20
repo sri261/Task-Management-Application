@@ -81,6 +81,9 @@ function CardCreator() {
                 setTag(e.target.value);
               }}
             >
+              {/*
+                REVIEW: tags should be dynamic. use should be able to create new tags.
+              */}
               <option>Select Task Tag</option>
               <option value="UI Design">UI Design</option>
               <option value="Copywritng">Copywritng</option>

@@ -47,6 +47,7 @@ function StatusCol(props: any) {
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // firestore.collection("card").onSnapshot((querySnapshot) => {
+    // Review: This should be in redux thunk action
     firestoreDB.collection("card").onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // const date = new Date(doc.data().timestamp);
