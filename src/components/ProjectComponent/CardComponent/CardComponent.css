@@ -23,6 +23,9 @@
   /* overflow: hidden; */
 }
 
+.card-component-caption-input {
+  width: 75%;
+}
 .icons-bar {
   display: flex;
   flex-direction: row;

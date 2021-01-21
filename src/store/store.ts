@@ -1,14 +1,18 @@
-import { createStore, combineReducers } from "redux";
-
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { modalReducer } from "./reducers/modalReducer";
 import { notesReducer } from "./reducers/notesReducer ";
-
+import {
+  firebaseReducer,
+  addFireToStoreReducer,
+} from "./reducers/firebaseReducer";
 // const rootReducer = combineReducers({
 //   modal: modalReducer,
-//   notes: notesReducer,
+//   fire: firebaseReducer,
 // });
-// const store = createStore(notesReducer);
 
-const store = createStore(modalReducer);
+// const store = createStore(addFireToStoreReducer, applyMiddleware(thunk));
+
+const store = createStore(modalReducer, applyMiddleware(thunk));
 
 export default store;

@@ -24,6 +24,8 @@ function CommentsModal() {
             <AiOutlineClose />
           </div>
         </div>
+        {/* ================= Comments Section============================ */}
+        <div className="comment-modal-comment-section">comments</div>
       </div>
     </div>
   );

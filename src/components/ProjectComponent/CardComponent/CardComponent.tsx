@@ -28,6 +28,9 @@ function CardComponent(props: any) {
       setEditCaption(true);
     }
   };
+  const tempFn = () => {
+    return props.caption;
+  };
 
   useEffect(() => {
     setCardID(props.id);
@@ -45,14 +48,27 @@ function CardComponent(props: any) {
           </div>
         </div>
         {/* ================= Caption Section============================ */}
-        <div onClick={editCaptionFn}>
+        <div>
           {editCaption ? (
             <div>
-              <input></input>
-              <button>Done</button>
+              {editCaption ? (
+                <form onSubmit={editCaptionFn}>
+                  <input
+                    className="card-component-caption-input"
+                    // value={props.caption}
+                    value={tempFn()}
+                    // onChange={(e) => {
+                    //   tempFn(e.target.value);
+                    // }}
+                  />
+
+                  {/* <button type="submit" onClick={editCaptionFn}> */}
+                  <button type="submit">Done</button>
+                </form>
+              ) : null}
             </div>
           ) : (
-            <div>
+            <div onClick={editCaptionFn}>
               <p>{props.caption} </p>
             </div>
           )}

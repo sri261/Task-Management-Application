@@ -1,63 +1,65 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import NewNoteInput from "../Testing/NewNoteInput";
-import { NotesState } from "../store/reducers/notesReducer ";
-import { addNote } from "../store/actions/actions";
-
-function TestComp() {
-  // const notes = useSelector<NotesState, NotesState["notes"]>(
-  const notes = useSelector<NotesState>((state) => state.notes);
-  console.log(notes);
+import {
+  FirebaseDataState,
+  Card,
+  ADD_TASK_TO_STORE,
+  addTestTaskToStoreActionMethod,
+  addFireToStoreActionMethodThunk,
+} from "../store/types";
+import { getFireDataThunkTest } from "../store/actions/actions";
+function Test() {
+  const getFire: any = useSelector<FirebaseDataState>((state) => state.cards);
   const dispatch = useDispatch();
-  const onAddNote = () => {
-    dispatch({ type: "ADD_NOTE", payload: "test success" });
-    // dispatch();
+  const idArray = Object.keys(getFire);
+  // console.log(idArray);
+  // console.log(getFire[3434].caption);
+  // ++++++++++++++++++++ FUNCTIONS ++++++++++++++++++++++++++++++++++
+  const checkStateFn = () => {
+    idArray.map((e) => {
+      console.log(getFire[e]);
+    });
   };
+
+  const getDataHandler = () => {
+    getFireDataThunkTest(); /* <<<<<<<<<<<<<<<<<----------Console.log() in this function */
+  };
+
   return (
     <div>
-      {/* <NewNoteInput addNote={onAddNote} /> */}
-      <hr />
-      <button onClick={onAddNote}>Sample</button>
-      {/* <ul>
-        {notes.map((note) => {
-          return <li key={note}>{note}</li>;
-        })}
-      </ul> */}
-      {notes}
+      This is a TEST COMPONENT
+      <button
+        onClick={() => {
+          dispatch(
+            addTestTaskToStoreActionMethod(
+              "store_test",
+              "store_test",
+              "store_test",
+              "store_test"
+            )
+          );
+        }}
+      >
+        Update state
+      </button>
+      <button
+        onClick={() => {
+          console.log("-------------------------------------");
+          checkStateFn();
+          console.log("-------------------------------------");
+        }}
+      >
+        check state
+      </button>
+      <button onClick={getDataHandler}>GET FIRE DATA TEST </button>
+      <button onClick={dispatch(addFireToStoreActionMethodThunk)}>
+        Add Fire Data to Store
+      </button>
+      {/* 1 - dispatch Action Method here
+           2 - Action Method will return an Action which goes to reducer
+           3- reducer will check type and update the state according to action.payload*/}
     </div>
   );
 }
 
-export default TestComp;
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import NewNoteInput from "../Testing/NewNoteInput";
-// import { NotesState } from "../store/reducers/notesReducer ";
-// import { addNote } from "../store/actions/actions";
-
-// function TestComp() {
-//   const notes = useSelector<NotesState, NotesState["notes"]>(
-//     (state) => state.notes
-//   );
-//   console.log(notes);
-//   const dispatch = useDispatch();
-//   const onAddNote = (note: string) => {
-//     // dispatch({ type: "ADD_NOTE", payload: note });
-//     dispatch(addNote(note));
-//   };
-//   return (
-//     <div>
-//       <NewNoteInput addNote={onAddNote} />
-//       <hr />
-//       <ul>
-//         {notes.map((note) => {
-//           return <li key={note}>{note}</li>;
-//         })}
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export default TestComp;
+export default Test;
