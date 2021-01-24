@@ -82,6 +82,7 @@ function StatusCol(props: any) {
           firestoreData.map((item: any) => {
             return (
               <CardComponent
+                key={item[4]}
                 caption={item[0]}
                 tag={item[2]}
                 timestamp={item[3]}

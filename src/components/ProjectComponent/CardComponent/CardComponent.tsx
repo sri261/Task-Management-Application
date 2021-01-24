@@ -9,6 +9,7 @@ import "./CaptionComponent/CaptionComponent";
 import Tag from "../Tag/Tag";
 import { ModalState } from "../../../store/types";
 import { changeModalActionMethod } from "../../../store/actions/actions";
+import ProfilePic from "../../../images/profile-pic.jpg";
 
 function CardComponent(props: any) {
   const modalState = useSelector<ModalState>((state) => state.show);
@@ -74,27 +75,32 @@ function CardComponent(props: any) {
           )}
         </div>
         {/* ================= Bottom Icon Bar============================ */}
-        <div className="icons-bar">
-          {/* ====Timestamp icon===== */}
-          <div className="icon">
-            <AiFillFlag />
-            <span className="icon-info">12 Jan</span>
+        <div className="bottom-bar">
+          <div className="icons-bar">
+            {/* ====Timestamp icon===== */}
+            <div className="icon">
+              <AiFillFlag />
+              <span className="icon-info">12 Jan</span>
+            </div>
+            {/* ====Comment icon===== */}
+            <div
+              className="icon comment-icon"
+              onClick={() => {
+                dispatch(changeModalActionMethod(true));
+              }}
+            >
+              <FaCommentAlt />
+              <span className="icon-info">4</span>
+            </div>
+            {/* ====Pins icon===== */}
+            <div className="icon" onClick={pinClickHandler}>
+              <AiOutlinePaperClip className="icon" />
+              <span className="icon-info">{pincount}</span>
+            </div>
           </div>
-          {/* ====Comment icon===== */}
-          <div
-            className="icon comment-icon"
-            onClick={() => {
-              dispatch(changeModalActionMethod(true));
-            }}
-          >
-            <FaCommentAlt />
-            <span className="icon-info">4</span>
-          </div>
-          {/* ====Pins icon===== */}
-          <div className="icon" onClick={pinClickHandler}>
-            <AiOutlinePaperClip className="icon" />
-            <span className="icon-info">{pincount}</span>
-          </div>
+          {/* <div className="profile-pic">
+            <img src={ProfilePic} alt="" />
+          </div> */}
         </div>
       </div>
     </>

@@ -21,3 +21,9 @@
 .comment-modal-top-bar-icon {
   cursor: pointer;
 }
+.display-comments {
+  margin: 10px 20px;
+  padding: 10px;
+  height: 200px;
+  background-color: white;
+}

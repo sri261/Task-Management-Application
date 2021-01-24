@@ -6,6 +6,7 @@ export const ADD_FIRE_TO_STORE = "ADD_FIRE_TO_STORE";
 
 export interface ModalState {
   show: boolean;
+  id: string /*<<<<<<<<<<<,------------------------ */;
 }
 
 export interface Card {
@@ -30,8 +31,6 @@ export interface FirebaseDataState {
     };
   };
 }
-
-//actions
 
 export interface ModalAction {
   type: typeof MODAL;
@@ -101,6 +100,7 @@ export const addFireToStoreActionMethodThunk = () => {
   //wait here for firebase data and then return payload to reducer
   return (dispatch: any) => {
     firestoreDB.collection("card").onSnapshot((querySnapshot) => {
+      console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
         const data: Task = {
           caption: doc.data().caption,
@@ -110,7 +110,7 @@ export const addFireToStoreActionMethodThunk = () => {
         };
         const id = doc.id;
 
-        dispatch(addFireToStoreActionMethod(data, doc.id));
+        // dispatch(addFireToStoreActionMethod(data, doc.id));
       });
     });
   };

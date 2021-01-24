@@ -20,12 +20,18 @@
 }
 .card-component p {
   padding: 20px;
-  /* overflow: hidden; */
 }
 
 .card-component-caption-input {
   width: 75%;
 }
+/* =============== Bottom Bar============== */
+/* .bottom-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 18px;
+} */
 .icons-bar {
   display: flex;
   flex-direction: row;
@@ -38,14 +44,6 @@
   margin-top: 2%;
   margin-bottom: 6%;
 }
-/* .card-component a {
-  text-decoration: none;
-  color: #c2c7d3;
-  display: flex;
-  align-items: center;
-  margin-top: 2%;
-  margin-bottom: 6%;
-} */
 
 .icon:hover {
   color: black;
@@ -53,4 +51,9 @@
 }
 .icon-info {
   margin-left: 10px;
+}
+.profile-pic img {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }

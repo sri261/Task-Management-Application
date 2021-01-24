@@ -15,7 +15,7 @@ ReactDOM.render(
     <React.StrictMode>
       <AuthProvider>
         <Provider store={store}>
-          {/* <Test /> */}
+          <Test />
           <Apps />
         </Provider>
       </AuthProvider>

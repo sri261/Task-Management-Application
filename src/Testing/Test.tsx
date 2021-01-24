@@ -1,63 +1,94 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  FirebaseDataState,
-  Card,
-  ADD_TASK_TO_STORE,
-  addTestTaskToStoreActionMethod,
-  addFireToStoreActionMethodThunk,
-} from "../store/types";
-import { getFireDataThunkTest } from "../store/actions/actions";
+import { ThunkAction } from "redux-thunk";
+
+import { firestoreDB } from "../firebase/firebaseIndex";
+
+const TEST = typeof "TEST";
+
+interface Store {}
+
+interface Task {
+  [id: string]: {
+    caption: string | null;
+    status: string | null;
+    tag: string | null;
+    timestamp: string | null;
+  };
+}
+//test action
+interface TestAction {
+  type: typeof TEST;
+  payload: Task;
+}
+
+//initial state
+const initialState: Store = {};
+
+//test reducer
+export const reducer = (state: Store = initialState, action: TestAction) => {
+  switch (action.type) {
+    case TEST:
+      return { ...state, tasks: action.payload };
+    default:
+      return state;
+  }
+};
+export type TestReducerState = ReturnType<typeof reducer>;
+//action method
+const testFnActionMethod = (payload: Task): TestAction => {
+  console.log("action method reached");
+  return {
+    type: TEST,
+    payload: payload,
+  };
+};
+
+let tasks: Task = {};
+//test Thunk Action Method
+export const testFnThunkActionMethod = (): ThunkAction<
+  void,
+  TestReducerState,
+  null,
+  TestAction
+> => {
+  return (dispatch: any) => {
+    console.log("Thunk Action Method Reached");
+    firestoreDB.collection("card").onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        tasks = Object.assign(tasks, { [doc.id]: data });
+      });
+    });
+    dispatch(testFnActionMethod(tasks));
+  };
+};
+
 function Test() {
-  const getFire: any = useSelector<FirebaseDataState>((state) => state.cards);
+  const reduxStore: any = useSelector<Task>((state) => state.tasks);
   const dispatch = useDispatch();
-  const idArray = Object.keys(getFire);
-  // console.log(idArray);
-  // console.log(getFire[3434].caption);
-  // ++++++++++++++++++++ FUNCTIONS ++++++++++++++++++++++++++++++++++
-  const checkStateFn = () => {
-    idArray.map((e) => {
-      console.log(getFire[e]);
+  const temp = () => {
+    const keys = Object.keys(reduxStore);
+    keys.map((key) => {
+      console.log(key);
     });
   };
-
-  const getDataHandler = () => {
-    getFireDataThunkTest(); /* <<<<<<<<<<<<<<<<<----------Console.log() in this function */
-  };
-
   return (
     <div>
-      This is a TEST COMPONENT
       <button
         onClick={() => {
-          dispatch(
-            addTestTaskToStoreActionMethod(
-              "store_test",
-              "store_test",
-              "store_test",
-              "store_test"
-            )
-          );
+          console.log("Dispatch button Clicked");
+          dispatch(testFnThunkActionMethod());
         }}
       >
-        Update state
+        Dispatch
       </button>
       <button
         onClick={() => {
-          console.log("-------------------------------------");
-          checkStateFn();
-          console.log("-------------------------------------");
+          temp();
         }}
       >
-        check state
+        Check Store
       </button>
-      <button onClick={getDataHandler}>GET FIRE DATA TEST </button>
-      <button onClick={dispatch(addFireToStoreActionMethodThunk)}>
-        Add Fire Data to Store
-      </button>
-      {/* 1 - dispatch Action Method here
-           2 - Action Method will return an Action which goes to reducer
-           3- reducer will check type and update the state according to action.payload*/}
     </div>
   );
 }

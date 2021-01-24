@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -8,6 +9,11 @@ import { ModalState } from "../../../store/types";
 function CommentsModal() {
   const commentModalState = useSelector<ModalState>((state) => state.show);
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
+  const handleCommentSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(comment);
+  };
 
   return (
     <div>
@@ -24,8 +30,23 @@ function CommentsModal() {
             <AiOutlineClose />
           </div>
         </div>
-        {/* ================= Comments Section============================ */}
-        <div className="comment-modal-comment-section">comments</div>
+        {/* ================= Display Comments Section============================ */}
+        <div>
+          <p className="display-comments">jsnbkjnsdkndkndknskdn</p>
+        </div>
+        {/* ================= Add Comments Section============================ */}
+
+        <div className="comment-modal-comment-section">
+          <form onSubmit={handleCommentSubmit}>
+            <input
+              type="text"
+              onChange={(e: any) => {
+                setComment(e.target.value);
+              }}
+            />
+            <button type="submit">Done</button>
+          </form>
+        </div>
       </div>
     </div>
   );

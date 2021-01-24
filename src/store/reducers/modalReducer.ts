@@ -2,6 +2,7 @@ import { ModalState, ModalAction, MODAL } from "../types";
 
 const initialState: ModalState = {
   show: false,
+  id: "" /*<<<<<<<<<<<,------------------------ */,
 };
 
 // type Action = { type: "ADD_NOTE"; payload: string };
