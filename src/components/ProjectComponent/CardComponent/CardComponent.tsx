@@ -7,13 +7,13 @@ import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
 import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
 import Tag from "../Tag/Tag";
-import { ModalState } from "../../../store/types";
+import { UIState } from "../../../store/types";
 import { changeModalActionMethod } from "../../../store/actions/actions";
 import ProfilePic from "../../../images/profile-pic.jpg";
 
 // REVIEW: Stay away from any
 function CardComponent(props: any) {
-  const modalState = useSelector<ModalState>((state) => state.show);
+  const modalState = useSelector<UIState>((state) => state.show);
   const dispatch = useDispatch();
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);

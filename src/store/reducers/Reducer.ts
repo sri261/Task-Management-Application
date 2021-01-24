@@ -11,8 +11,8 @@ export const Reducer = (
 ) => {
   switch (action.type) {
     case FIRE_TO_STORE:
-      return { ...state, tasks: action.payload };
-
+      //   return { ...state, tasks: action.payload };
+      return { ...state, ...action.payload };
     default:
       return state;
   }

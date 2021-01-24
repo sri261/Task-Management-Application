@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 
 import "./Modal.css";
-import { ModalState } from "../../store/types";
+import { UIState } from "../../store/types";
 import CommentsModal from "../Modal/CommentsModal/CommentsModal";
 
 function Modal() {
-  const modalState = useSelector<ModalState>((state) => state.show);
+  const uiState = useSelector<UIState>((state) => state.show);
   const dispatch = useDispatch();
-  console.log(modalState);
+  console.log(uiState);
   return (
     <div className="modal">
       {/* <button
@@ -25,7 +25,7 @@ function Modal() {
         className="close-modal-icon"
         onClick={() => {
           dispatch({ type: "MODAL", payload: true });
-          console.log(modalState);
+          console.log(uiState);
         }}
       >
         <AiOutlineClose />

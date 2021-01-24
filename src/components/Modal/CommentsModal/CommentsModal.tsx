@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 
 import "./CommentsModal.css";
-import { ModalState } from "../../../store/types";
+import { UIState } from "../../../store/types";
 
 function CommentsModal() {
-  const commentModalState = useSelector<ModalState>((state) => state.show);
+  const commentModalState = useSelector<UIState>((state) => state.show);
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
   const handleCommentSubmit = (e: any) => {

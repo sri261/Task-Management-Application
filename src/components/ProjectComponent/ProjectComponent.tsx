@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import ProjectTopBarComponent from "./ProjectTopBarComponent/ProjectTopBarComponent";
 import "./ProjectComponent.css";
 import StatusCol from "./StatusCol/StatusCol";
 import Navbar from "./Navbar/Navbar";
 import CommentsModal from "../Modal/CommentsModal/CommentsModal";
-import { ModalState } from "../../store/types";
+import { UIState } from "../../store/types";
+import { fireDataToStoreThunkActionMethod } from "../../store/actions/actions";
 
 function ProjectComponent() {
-  const modalState = useSelector<ModalState>((state) => state.show);
+  const uiState = useSelector<UIState>((state) => state.show);
+  const dispatch = useDispatch();
+  dispatch(fireDataToStoreThunkActionMethod());
 
   return (
     <>
-      <div style={modalState ? { filter: "blur(2px)" } : {}}>
+      <div style={uiState ? { filter: "blur(2px)" } : {}}>
         <div className="project-component">
           <Navbar />
 
@@ -29,7 +32,7 @@ function ProjectComponent() {
         </div>
       </div>
       <div className="project-component-modal">
-        {modalState ? <CommentsModal /> : null}
+        {uiState ? <CommentsModal /> : null}
       </div>
     </>
   );
