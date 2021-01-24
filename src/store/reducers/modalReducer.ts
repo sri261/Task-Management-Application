@@ -5,7 +5,6 @@ const initialState: ModalState = {
   id: "" /*<<<<<<<<<<<,------------------------ */,
 };
 
-// type Action = { type: "ADD_NOTE"; payload: string };
 export const modalReducer = (
   state: ModalState = initialState,
   action: ModalAction
