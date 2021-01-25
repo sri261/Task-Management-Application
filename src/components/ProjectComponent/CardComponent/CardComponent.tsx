@@ -8,7 +8,11 @@ import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
 import Tag from "../Tag/Tag";
 import { UIState } from "../../../store/types";
-import { changeModalActionMethod } from "../../../store/actions/actions";
+import {
+  changeModalActionMethod,
+  setCardIDActionMethod,
+} from "../../../store/actions/actions";
+import { getCommentsFromFirestoreThunkAction } from "../../../store/actions/commentsAction";
 import ProfilePic from "../../../images/profile-pic.jpg";
 
 // REVIEW: Stay away from any
@@ -17,8 +21,7 @@ function CardComponent(props: any) {
   const dispatch = useDispatch();
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
-  const [cardID, setCardID] = useState();
-
+  const [cardID, setCardID] = useState("");
   const pinClickHandler = () => {
     setPincount(pincount + 1);
   };
@@ -88,6 +91,8 @@ function CardComponent(props: any) {
               className="icon comment-icon"
               onClick={() => {
                 dispatch(changeModalActionMethod(true));
+                dispatch(setCardIDActionMethod(cardID));
+                dispatch(getCommentsFromFirestoreThunkAction(cardID));
               }}
             >
               <FaCommentAlt />

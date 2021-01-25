@@ -5,11 +5,13 @@ import { firestoreDB } from "../../firebase/firebaseIndex";
 export interface CurrentUserAction {
   type: typeof CURRENT_USER;
   payload: string;
+  // payload: boolean;
 }
 
 //Current User Action Method
 export const setCurrentUserActionMethod = (
   payload: string
+  // payload: boolean
 ): CurrentUserAction => {
   return { type: CURRENT_USER, payload: payload };
 };
@@ -17,9 +19,12 @@ export const setCurrentUserActionMethod = (
 //Get Current User Thunk Action Method
 export const currentUserThunkActionMethod = () => {
   return (dispatch: any) => {
-    firestoreDB.collection("CurrentUser").onSnapshot((querySnapshot) => {
-      console.log(querySnapshot);
-    });
+    // firestoreDB.collection("CurrentUser").onSnapshot((querySnapshot) => {
+    //   querySnapshot.forEach((item: any) => {
+    //     console.log(item);
+    //   });
+    // });
+    // dispatch(setCurrentUserActionMethod())
   };
 };
 
@@ -29,7 +34,7 @@ export const setCurrentUserThunkActionMethod = (email: string) => {
     firestoreDB
       .collection("CurrentUser")
       .doc("CurrentUser")
-      .set({ CurrUser: email })
+      .set({ email })
       .then(() => {
         console.log("Current User Added To Db");
       })

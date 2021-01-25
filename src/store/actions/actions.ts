@@ -1,6 +1,6 @@
 import { ThunkAction } from "redux-thunk";
 
-import { MODAL, SET_EMAIL } from "../types";
+import { MODAL, SET_CARD_ID, SET_EMAIL } from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
 import {
   FIRE_TO_STORE,
@@ -8,6 +8,7 @@ import {
   Store,
   STORE_READY,
   UPDATE_STORE,
+  COMMENTS_LOADING,
 } from "../types";
 import { ReducerType } from "../reducers/Reducer";
 
@@ -74,6 +75,8 @@ export const changeModalActionMethod = (input: boolean): ModalAction => {
     payload: input,
   };
 };
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Store Ready Action
 export interface StoreReadyAction {
@@ -87,6 +90,8 @@ export const StoreReadyActionMethod = (input: boolean): StoreReadyAction => {
     payload: input,
   };
 };
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Set Email Action
 export interface SetEmailAction {
@@ -100,6 +105,46 @@ export const setEmailActionMethod = (payload: string): SetEmailAction => {
     payload: payload,
   };
 };
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-export type UiAction = ModalAction | StoreReadyAction | SetEmailAction;
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//Set CardId Action
+export interface SetCardID {
+  type: typeof SET_CARD_ID;
+  payload: string;
+}
+//Set CardId Action Method
+export const setCardIDActionMethod = (payload: string): SetCardID => {
+  return {
+    type: SET_CARD_ID,
+    payload: payload,
+  };
+};
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Comments Loading Action
+// export interface CommentsLoading {
+//   type: typeof COMMENTS_LOADING;
+//   payload: boolean;
+// }
+// //Comments Loading Action Method
+// export const commentsLoadingActionMethod = (
+//   payload: boolean
+// ): CommentsLoading => {
+//   return {
+//     type: COMMENTS_LOADING,
+//     payload: payload,
+//   };
+// };
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// export type UiAction =
+//   | ModalAction
+//   | StoreReadyAction
+//   | SetEmailAction
+//   | SetCardID
+//   | CommentsLoading;
 export type ReducerAction = Update_Store | Get_Fire_Data_To_Store_Action;

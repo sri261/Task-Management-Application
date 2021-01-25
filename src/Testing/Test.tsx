@@ -16,15 +16,6 @@ function Test() {
       >
         Check Store
       </button>
-      <button
-        onClick={() => {
-          dispatch(setCurrentUserActionMethod("hello"));
-
-          console.log("success");
-        }}
-      >
-        Email
-      </button>
     </div>
   );
 }

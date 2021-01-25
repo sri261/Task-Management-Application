@@ -30,7 +30,7 @@ function Navbar() {
       <button
         className="navbar-signout-btn"
         onClick={() => {
-          // setCurrentUserThunkActionMethod("")
+          setCurrentUserThunkActionMethod("");
           auth().signOut();
         }}
       >
