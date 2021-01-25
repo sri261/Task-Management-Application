@@ -1,4 +1,4 @@
-import { UIState, ModalAction, MODAL, STORE_READY } from "../types";
+import { UIState, MODAL, STORE_READY, SET_EMAIL } from "../types";
 import { UiAction } from "../actions/actions";
 
 const initialState: UIState = {
@@ -8,13 +8,12 @@ const initialState: UIState = {
 
 export const uiReducer = (state: UIState = initialState, action: UiAction) => {
   switch (action.type) {
-    case MODAL: {
-      console.log(state);
-
+    case MODAL:
       return { ...state, show: action.payload };
-    }
     case STORE_READY:
       return { ...state, fireDataLoaded: action.payload };
+    case SET_EMAIL:
+      return { ...state, email: action.payload };
     default:
       return state;
   }

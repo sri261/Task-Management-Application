@@ -38,7 +38,7 @@ function StatusCol(props: any) {
   const temp: any = useSelector<any>((state) => state.Reducer);
   const final: Array<any> = [];
   const fetchStoreData = () => {
-    console.log(temp, "temp");
+    // console.log(temp, "temp");
     const entries: any = Object.entries(storeData);
     entries.map((i: any) => {
       if (i[1].status === props.status) {
@@ -52,7 +52,7 @@ function StatusCol(props: any) {
       fetchStoreData();
       setFirestoreData(final);
     }
-  }, [storeReady]);
+  }, [storeReady, storeData]);
 
   return (
     <div className="statuscol-col">

@@ -32,24 +32,24 @@ function CardCreator() {
 
     setShow(false);
 
-    // const timestampOnCard = timestamp.getDay();
-    // console.log(timestampOnCard);
-    // firestoreDB
-    //   .collection("card")
-    //   // .doc(caption)
-    //   .doc()
-    //   .set({
-    //     caption: caption,
-    //     timestamp: timestamp.toString(),
-    //     status: status,
-    //     tag: tag,
-    //   })
-    //   .then(() => {
-    //     console.log("added to firestoreDB");
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error adding to firestoreDB", error);
-    //   });
+    const timestampOnCard = timestamp.getDay();
+    console.log(timestampOnCard);
+    firestoreDB
+      .collection("card")
+      // .doc(caption)
+      .doc()
+      .set({
+        caption: caption,
+        timestamp: timestamp.toString(),
+        status: status,
+        tag: tag,
+      })
+      .then(() => {
+        console.log("added to firestoreDB");
+      })
+      .catch((error) => {
+        console.log("Error adding to firestoreDB", error);
+      });
   };
 
   return (

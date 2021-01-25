@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import { auth } from "../../../firebase/firebaseIndex";
+import { setCurrentUserThunkActionMethod } from "../../../store/actions/currentUserActions";
 // import "../../../images/logo.svg";
 function Navbar() {
   return (
@@ -29,6 +30,7 @@ function Navbar() {
       <button
         className="navbar-signout-btn"
         onClick={() => {
+          // setCurrentUserThunkActionMethod("")
           auth().signOut();
         }}
       >

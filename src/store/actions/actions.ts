@@ -1,6 +1,6 @@
 import { ThunkAction } from "redux-thunk";
 
-import { MODAL } from "../types";
+import { MODAL, SET_EMAIL } from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
 import {
   FIRE_TO_STORE,
@@ -88,5 +88,18 @@ export const StoreReadyActionMethod = (input: boolean): StoreReadyAction => {
   };
 };
 
-export type UiAction = ModalAction | StoreReadyAction;
+//Set Email Action
+export interface SetEmailAction {
+  type: typeof SET_EMAIL;
+  payload: string;
+}
+//Set Email Action Method
+export const setEmailActionMethod = (payload: string): SetEmailAction => {
+  return {
+    type: SET_EMAIL,
+    payload: payload,
+  };
+};
+
+export type UiAction = ModalAction | StoreReadyAction | SetEmailAction;
 export type ReducerAction = Update_Store | Get_Fire_Data_To_Store_Action;

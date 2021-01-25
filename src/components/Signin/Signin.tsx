@@ -1,16 +1,22 @@
 import "./Signin.css";
 import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { firebaseAuth } from "../../provider/AuthProvider";
 import { auth } from "../../firebase/firebaseIndex";
+import { setEmailActionMethod } from "../../store/actions/actions";
+import { setCurrentUserThunkActionMethod } from "../../store/actions/currentUserActions";
 
 const Signin = (props: any) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(firebaseAuth);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setError(null);
     const { email, password } = e.target;
+    // Dispatch
+    dispatch(setCurrentUserThunkActionMethod(email.value));
     console.log(email.value, password.value);
     auth()
       .signInWithEmailAndPassword(email.value, password.value)

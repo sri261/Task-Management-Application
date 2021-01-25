@@ -10,10 +10,7 @@ export const Reducer = (state: Store = initialState, action: ReducerAction) => {
       //   return { ...state, tasks: action.payload };
       return { ...state, ...action.payload };
     case UPDATE_STORE:
-      const tempo = { ...state, ...action.payload };
-      console.log(tempo, "tempo");
       return { ...state, ...action.payload };
-
     default:
       return state;
   }
