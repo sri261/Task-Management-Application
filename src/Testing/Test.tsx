@@ -5,28 +5,14 @@ import { fireDataToStoreThunkActionMethod } from "../store/actions/actions";
 import { FaDivide } from "react-icons/fa";
 
 function Test() {
-  const reduxStore: any = useSelector<Task>((state) => state.tasks);
+  const reduxStore: any = useSelector<Task>((state) => state.Reducer);
   const dispatch = useDispatch();
-  const temp = () => {
-    console.log(reduxStore);
-    const keys = Object.keys(reduxStore);
-    keys.map((key) => {
-      console.log(key);
-    });
-  };
+
   return (
     <div>
       <button
         onClick={() => {
-          console.log("Dispatch button Clicked");
-          dispatch(fireDataToStoreThunkActionMethod());
-        }}
-      >
-        Dispatch
-      </button>
-      <button
-        onClick={() => {
-          temp();
+          console.log(reduxStore, "Store");
         }}
       >
         Check Store

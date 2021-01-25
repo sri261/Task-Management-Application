@@ -10,7 +10,7 @@ import { UIState } from "../../store/types";
 import { fireDataToStoreThunkActionMethod } from "../../store/actions/actions";
 
 function ProjectComponent() {
-  const uiState = useSelector<UIState>((state) => state.show);
+  const uiState = useSelector<any>((state) => state.uiReducer.show);
   const dispatch = useDispatch();
   dispatch(fireDataToStoreThunkActionMethod());
 
@@ -19,7 +19,6 @@ function ProjectComponent() {
       <div style={uiState ? { filter: "blur(2px)" } : {}}>
         <div className="project-component">
           <Navbar />
-
           <div className="project-component-sub">
             <ProjectTopBarComponent />
             <div className="status-cols">

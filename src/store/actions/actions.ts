@@ -2,7 +2,13 @@ import { ThunkAction } from "redux-thunk";
 
 import { MODAL } from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
-import { FIRE_TO_STORE, Task, Store, STORE_READY } from "../types";
+import {
+  FIRE_TO_STORE,
+  Task,
+  Store,
+  STORE_READY,
+  UPDATE_STORE,
+} from "../types";
 import { ReducerType } from "../reducers/Reducer";
 
 // Fire Data To Store Action
@@ -14,8 +20,6 @@ export interface Get_Fire_Data_To_Store_Action {
 const fireDataToStoreActionMethod = (
   payload: Store
 ): Get_Fire_Data_To_Store_Action => {
-  // console.log("action method reached");
-  // console.log("data added to store");
   return {
     type: FIRE_TO_STORE,
     payload: payload,
@@ -47,6 +51,16 @@ export const fireDataToStoreThunkActionMethod = (): ThunkAction<
   };
 };
 
+//Update Store Action
+export interface Update_Store {
+  type: typeof UPDATE_STORE;
+  payload: Task;
+}
+//Update Store Action Method
+export const updateStore = (payload: Task): Update_Store => {
+  return { type: UPDATE_STORE, payload: payload };
+};
+
 //modal action
 export interface ModalAction {
   type: typeof MODAL;
@@ -75,3 +89,4 @@ export const StoreReadyActionMethod = (input: boolean): StoreReadyAction => {
 };
 
 export type UiAction = ModalAction | StoreReadyAction;
+export type ReducerAction = Update_Store | Get_Fire_Data_To_Store_Action;

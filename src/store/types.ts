@@ -2,7 +2,7 @@ export const MODAL = "MODAL";
 // export const FIRE_TO_STORE = typeof "FIRE_TO_STORE";
 export const FIRE_TO_STORE = "FIRE_TO_STORE";
 export const STORE_READY = "STORE_READY";
-
+export const UPDATE_STORE = "UPDATE_STORE";
 //Store
 export interface Store {
   [id: string]: Task;
@@ -20,7 +20,7 @@ export interface Task {
 
 export interface UIState {
   show: boolean;
-  fireDataLoading: boolean;
+  fireDataLoaded: boolean;
 }
 
 export interface ModalAction {

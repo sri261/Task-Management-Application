@@ -3,16 +3,18 @@ import { UiAction } from "../actions/actions";
 
 const initialState: UIState = {
   show: false,
-  fireDataLoading: false,
+  fireDataLoaded: false,
 };
 
 export const uiReducer = (state: UIState = initialState, action: UiAction) => {
   switch (action.type) {
     case MODAL: {
+      console.log(state);
+
       return { ...state, show: action.payload };
     }
     case STORE_READY:
-      return { ...state, fireDataLoading: action.payload };
+      return { ...state, fireDataLoaded: action.payload };
     default:
       return state;
   }

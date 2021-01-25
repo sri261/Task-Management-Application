@@ -7,9 +7,7 @@ import { UIState } from "../../store/types";
 import CommentsModal from "../Modal/CommentsModal/CommentsModal";
 
 function Modal() {
-  const uiState = useSelector<UIState>((state) => state.show);
   const dispatch = useDispatch();
-  console.log(uiState);
   return (
     <div className="modal">
       {/* <button
@@ -25,7 +23,6 @@ function Modal() {
         className="close-modal-icon"
         onClick={() => {
           dispatch({ type: "MODAL", payload: true });
-          console.log(uiState);
         }}
       >
         <AiOutlineClose />

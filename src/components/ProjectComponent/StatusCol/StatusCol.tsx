@@ -33,10 +33,12 @@ function StatusCol(props: any) {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   const storeData: any = useSelector<Task>((state) => state.Reducer);
   const storeReady: any = useSelector<any>(
-    (state) => state.uiReducer.fireDataLoading
+    (state) => state.uiReducer.fireDataLoaded
   );
+  const temp: any = useSelector<any>((state) => state.Reducer);
   const final: Array<any> = [];
   const fetchStoreData = () => {
+    console.log(temp, "temp");
     const entries: any = Object.entries(storeData);
     entries.map((i: any) => {
       if (i[1].status === props.status) {
@@ -59,9 +61,6 @@ function StatusCol(props: any) {
         {storeReady ? (
           <div>
             {firestoreData.map((item: any) => {
-              {
-                console.log(item);
-              }
               return (
                 <CardComponent
                   key={item[0]}

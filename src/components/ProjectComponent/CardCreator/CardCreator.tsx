@@ -1,39 +1,55 @@
 import React, { useState } from "react";
-import "./CardCreator.css";
 import { useFirestore } from "react-redux-firebase";
 import { AiOutlineClose } from "react-icons/ai";
 import { firestoreDB } from "../../../firebase/firebaseIndex";
+import { useDispatch } from "react-redux";
+
+import "./CardCreator.css";
+import { updateStore } from "../../../store/actions/actions";
 
 function CardCreator() {
   const [caption, setCaption] = useState("");
   const [status, setStatus] = useState("");
   const [tag, setTag] = useState("");
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   // const firestore = useFirestore();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setShow(false);
     const timestamp = new Date();
+    dispatch(
+      updateStore({
+        new12: {
+          caption: "caption",
+          status: "status",
+          tag: "tag",
+          timestamp: timestamp.toString(),
+        },
+      })
+    );
+
+    setShow(false);
+
     // const timestampOnCard = timestamp.getDay();
     // console.log(timestampOnCard);
-    firestoreDB
-      .collection("card")
-      // .doc(caption)
-      .doc()
-      .set({
-        caption: caption,
-        timestamp: timestamp.toString(),
-        status: status,
-        tag: tag,
-      })
-      .then(() => {
-        console.log("added to firestoreDB");
-      })
-      .catch((error) => {
-        console.log("Error adding to firestoreDB", error);
-      });
+    // firestoreDB
+    //   .collection("card")
+    //   // .doc(caption)
+    //   .doc()
+    //   .set({
+    //     caption: caption,
+    //     timestamp: timestamp.toString(),
+    //     status: status,
+    //     tag: tag,
+    //   })
+    //   .then(() => {
+    //     console.log("added to firestoreDB");
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error adding to firestoreDB", error);
+    //   });
   };
 
   return (
