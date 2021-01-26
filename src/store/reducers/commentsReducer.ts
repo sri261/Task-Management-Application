@@ -1,15 +1,17 @@
-import { Get_Comments_From_Firestore } from "../actions/commentsAction";
-import { GET_COMMENTS_FIRESTORE } from "../types";
+import { CommentsAction } from "../actions/commentsAction";
+import { GET_COMMENTS_FIRESTORE, EMPTY_REDUX_STORE_COMMENTS } from "../types";
 const initialState: any = [];
 
 export const commentsReducer = (
   state: any = initialState,
-  action: Get_Comments_From_Firestore
+  action: CommentsAction
 ) => {
   switch (action.type) {
     case GET_COMMENTS_FIRESTORE:
       //   return [...state, ...action.payload];
-      return (state[1] = action.payload);
+      return (state[0] = action.payload);
+    case EMPTY_REDUX_STORE_COMMENTS:
+      return (state[0] = []);
     default:
       return state;
   }
