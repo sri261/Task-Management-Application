@@ -16,7 +16,7 @@ export const COMMENTS_LOADING = "COMMENTS_LOADING";
 export const EMPTY_REDUX_STORE_COMMENTS = "EMPTY_REDUX_STORE_COMMENTS";
 export const CURRENT_USER = "CURRENT_USER";
 export const UPDATE_STORE_FIRESTORE = "UPDATE_STORE_FIRESTORE";
-
+export const UPDATE_PIN = "UPDATE_PIN";
 //Store
 export interface Store {
   [id: string]: Task;

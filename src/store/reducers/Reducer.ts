@@ -1,4 +1,4 @@
-import { Store, FIRE_TO_STORE, UPDATE_STORE } from "../types";
+import { Store, FIRE_TO_STORE, UPDATE_STORE, UPDATE_PIN } from "../types";
 import { ReducerAction } from "../actions/actions";
 //Initial Store State
 const initialState: Store = {};
@@ -11,6 +11,9 @@ export const Reducer = (state: Store = initialState, action: ReducerAction) => {
       return { ...state, ...action.payload };
     case UPDATE_STORE:
       return { ...state, ...action.payload };
+    case UPDATE_PIN:
+      console.log(action.payload);
+      return state;
     default:
       return state;
   }

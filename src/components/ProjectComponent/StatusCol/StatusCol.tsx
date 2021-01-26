@@ -49,6 +49,7 @@ function StatusCol(props: any) {
           i[1].tag,
           i[1].timestamp,
           i[1].commentCount,
+          i[1].pins,
         ]);
       }
     });
@@ -77,6 +78,7 @@ function StatusCol(props: any) {
                   tag={item[3]}
                   timestamp={item[4]}
                   commentCount={item[5]}
+                  pins={item[6]}
                 />
               );
             })}

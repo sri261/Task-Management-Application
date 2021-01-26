@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaCommentAlt } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
+import Tippy from "@tippy.js/react";
+import "tippy.js/dist/tippy.css";
 
 import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
@@ -13,7 +15,7 @@ import {
   setCardIDActionMethod,
 } from "../../../store/actions/actions";
 import { getCommentsFromFirestoreThunkAction } from "../../../store/actions/commentsAction";
-import ProfilePic from "../../../images/profile-pic.jpg";
+import { updatePinActionMethod } from "../../../store/actions/actions";
 
 // REVIEW: Stay away from any
 function CardComponent(props: any) {
@@ -22,10 +24,37 @@ function CardComponent(props: any) {
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
   const [cardID, setCardID] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
   const pinClickHandler = () => {
     setPincount(pincount + 1);
+    dispatch(updatePinActionMethod(2, cardID));
   };
-
+  const dateFn = () => {
+    const monthsArray = [
+      "Jan",
+      "Feb",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const date = new Date(props.timestamp);
+    const month = monthsArray[date.getMonth()];
+    return `${date.getDate()} ${month}`;
+  };
+  const date = new Date(props.timestamp);
+  const toolTipDate = date.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
   const editCaptionFn = () => {
     if (editCaption) {
       setEditCaption(false);
@@ -60,11 +89,7 @@ function CardComponent(props: any) {
                 <form onSubmit={editCaptionFn}>
                   <input
                     className="card-component-caption-input"
-                    // value={props.caption}
                     value={tempFn()}
-                    // onChange={(e) => {
-                    //   tempFn(e.target.value);
-                    // }}
                   />
 
                   {/* <button type="submit" onClick={editCaptionFn}> */}
@@ -82,26 +107,35 @@ function CardComponent(props: any) {
         <div className="bottom-bar">
           <div className="icons-bar">
             {/* ====Timestamp icon===== */}
-            <div className="icon">
-              <AiFillFlag />
-              <span className="icon-info">12 Jan</span>
-            </div>
+            <Tippy content={toolTipDate}>
+              <div className="icon">
+                <AiFillFlag />
+                <span className="icon-info">{dateFn()}</span>
+              </div>
+            </Tippy>
+
             {/* ====Comment icon===== */}
-            <div
-              className="icon comment-icon"
-              onClick={() => {
-                dispatch(changeModalActionMethod(true));
-                dispatch(setCardIDActionMethod(cardID));
-                dispatch(getCommentsFromFirestoreThunkAction(cardID));
-              }}
-            >
-              <FaCommentAlt />
-              <span className="icon-info">{props.commentCount}</span>
-            </div>
+            <Tippy content="sample">
+              <div
+                className="icon comment-icon"
+                onMouseOver={() => {
+                  setShowTooltip(true);
+                }}
+                onClick={() => {
+                  dispatch(changeModalActionMethod(true));
+                  dispatch(setCardIDActionMethod(cardID));
+                  dispatch(getCommentsFromFirestoreThunkAction(cardID));
+                }}
+              >
+                <FaCommentAlt />
+                <span className="icon-info">{props.commentCount}</span>
+              </div>
+            </Tippy>
+
             {/* ====Pins icon===== */}
             <div className="icon" onClick={pinClickHandler}>
               <AiOutlinePaperClip className="icon" />
-              <span className="icon-info">{pincount}</span>
+              <span className="icon-info">{props.pins}</span>
             </div>
           </div>
           {/* <div className="profile-pic">

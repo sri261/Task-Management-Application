@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Task } from "../store/types";
 import { fireDataToStoreThunkActionMethod } from "../store/actions/actions";
-import { setCurrentUserActionMethod } from "../store/actions/currentUserActions";
 function Test() {
   const reduxStore: any = useSelector<any>((state) => state);
   const dispatch = useDispatch();

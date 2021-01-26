@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { firebaseAuth } from "../../provider/AuthProvider";
 import { auth } from "../../firebase/firebaseIndex";
 import { setEmailActionMethod } from "../../store/actions/actions";
-import { setCurrentUserThunkActionMethod } from "../../store/actions/currentUserActions";
 
 const Signin = (props: any) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(firebaseAuth);
@@ -15,8 +14,6 @@ const Signin = (props: any) => {
     e.preventDefault();
     setError(null);
     const { email, password } = e.target;
-    // Dispatch
-    dispatch(setCurrentUserThunkActionMethod(email.value));
     console.log(email.value, password.value);
     auth()
       .signInWithEmailAndPassword(email.value, password.value)

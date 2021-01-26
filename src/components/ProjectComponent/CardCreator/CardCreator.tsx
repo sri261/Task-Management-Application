@@ -18,7 +18,7 @@ function CardCreator() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const timestamp = new Date();
+    const timestamp = new Date().toISOString();
     dispatch(
       updateStore({
         new12: {
@@ -32,8 +32,8 @@ function CardCreator() {
 
     setShow(false);
 
-    const timestampOnCard = timestamp.getDay();
-    console.log(timestampOnCard);
+    // const timestampOnCard = timestamp.getDay();
+    // console.log(timestampOnCard);
     firestoreDB
       .collection("card")
       // .doc(caption)
@@ -44,6 +44,7 @@ function CardCreator() {
         status: status,
         tag: tag,
         commentCount: 0,
+        pins: 0,
       })
       .then(() => {
         console.log("added to firestoreDB");

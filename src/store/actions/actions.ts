@@ -8,7 +8,7 @@ import {
   Store,
   STORE_READY,
   UPDATE_STORE,
-  COMMENTS_LOADING,
+  UPDATE_PIN,
 } from "../types";
 import { ReducerType } from "../reducers/Reducer";
 
@@ -106,7 +106,6 @@ export const setEmailActionMethod = (payload: string): SetEmailAction => {
   };
 };
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Set CardId Action
@@ -122,29 +121,27 @@ export const setCardIDActionMethod = (payload: string): SetCardID => {
   };
 };
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//update pin Action
+interface UpdatePinAction {
+  type: typeof UPDATE_PIN;
+  payload: [number, string];
+}
+//update pin Action Method
+export const updatePinActionMethod = (
+  input: number,
+  cardID: string
+): UpdatePinAction => {
+  return {
+    type: UPDATE_PIN,
+    payload: [input, cardID],
+  };
+};
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Comments Loading Action
-// export interface CommentsLoading {
-//   type: typeof COMMENTS_LOADING;
-//   payload: boolean;
-// }
-// //Comments Loading Action Method
-// export const commentsLoadingActionMethod = (
-//   payload: boolean
-// ): CommentsLoading => {
-//   return {
-//     type: COMMENTS_LOADING,
-//     payload: payload,
-//   };
-// };
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// export type UiAction =
-//   | ModalAction
-//   | StoreReadyAction
-//   | SetEmailAction
-//   | SetCardID
-//   | CommentsLoading;
-export type ReducerAction = Update_Store | Get_Fire_Data_To_Store_Action;
+export type ReducerAction =
+  | Update_Store
+  | Get_Fire_Data_To_Store_Action
+  | UpdatePinAction;

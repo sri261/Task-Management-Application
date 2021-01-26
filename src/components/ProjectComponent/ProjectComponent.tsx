@@ -8,13 +8,11 @@ import Navbar from "./Navbar/Navbar";
 import CommentsModal from "../Modal/CommentsModal/CommentsModal";
 import { UIState } from "../../store/types";
 import { fireDataToStoreThunkActionMethod } from "../../store/actions/actions";
-import { currentUserThunkActionMethod } from "../../store/actions/currentUserActions";
 
 function ProjectComponent() {
   const uiState = useSelector<any>((state) => state.uiReducer.show);
   const dispatch = useDispatch();
   dispatch(fireDataToStoreThunkActionMethod());
-  dispatch(currentUserThunkActionMethod());
 
   return (
     <>

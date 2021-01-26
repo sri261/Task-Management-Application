@@ -6,7 +6,6 @@ import {
   SET_CARD_ID,
   COMMENTS_LOADING,
 } from "../types";
-// import { UiAction } from "../actions/actions";
 import { UiAction } from "../types";
 const initialState: UIState = {
   show: false,

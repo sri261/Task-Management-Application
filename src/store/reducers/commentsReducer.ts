@@ -1,9 +1,5 @@
 import { CommentsAction } from "../actions/commentsAction";
-import {
-  GET_COMMENTS_FIRESTORE,
-  EMPTY_REDUX_STORE_COMMENTS,
-  UPDATE_STORE_FIRESTORE,
-} from "../types";
+import { GET_COMMENTS_FIRESTORE, EMPTY_REDUX_STORE_COMMENTS } from "../types";
 const initialState: any = [];
 
 export const commentsReducer = (
