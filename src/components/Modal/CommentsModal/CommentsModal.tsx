@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
@@ -9,25 +9,25 @@ import { firestoreDB } from "../../../firebase/firebaseIndex";
 import { setCardIDActionMethod } from "../../../store/actions/actions";
 
 function CommentsModal() {
+  // const temp: Array<any> = ["sample", "sample-1", "sample-2"];
+
   const commentModalState = useSelector<UIState>((state) => state.show);
   const cardId: any = useSelector<any>((state) => state.uiReducer.cardID);
   const loading: any = useSelector<any>(
     (state) => state.uiReducer.commentsLoading
   );
-  console.log(loading, "loading");
-
   const commentsFromStore: any = useSelector<any>(
     (state) => state.commentsReducer
   );
 
-  // console.log(commentsFromStore, "comments");
-  const dispatch = useDispatch();
   const [comment, setComment] = useState("");
+  // const [modalComment, setModalComment] = useState(commentsFromStore);
+  const dispatch = useDispatch();
+
   const handleCommentSubmit = (e: any) => {
     e.preventDefault();
     console.log(comment);
     console.log(cardId);
-
     // dispatch(setCardIDActionMethod(comment));
     firestoreDB
       .collection("card")
@@ -39,18 +39,6 @@ function CommentsModal() {
         console.log("comment added to firestore");
       });
   };
-  //set comments
-  //=>onSumbit dispatch thunk Action to send comments to
-  //  firestore and update redux store
-  // ---------------------
-  //onSubmit => dispatch(ThunkAction-to firestore) => dispatch(new Comment to store)
-  // --------------------------
-  //get comments
-  //=> onClick comment icon in CardComponent
-  //=> dispatch Thunk action to  get comments from firestore to redux store
-  //-- set some loading ,after thunk action complete dispatch action to send
-  //    comments to redux store
-  //=> render the comments from redux store data
 
   return (
     <div>
@@ -68,25 +56,18 @@ function CommentsModal() {
           </div>
         </div>
         {/* ================= Display Comments Section============================ */}
-
         {loading ? (
-          <h5>Loading...</h5>
+          <div>Loading...</div>
         ) : (
-          <ul>
-            {commentsFromStore.map((i: any) => {
-              console.log(i[1]);
-              return <li>{i[1]}</li>;
-            })}
-          </ul>
+          <div>
+            <ul>
+              {commentsFromStore.map((item: any) => {
+                console.log(item[1]);
+                return <li key={item[0]}>{item[1]}</li>;
+              })}
+            </ul>
+          </div>
         )}
-
-        {/* // <ul>
-            //   {commentsFromStore.map((i: any) => 
-            //     console.log(i, "i");
-            //     return <i>{i[1]}</i>;
-            //   })}
-            // </ul>
-          // <p className="display-comments"></p> */}
 
         {/* ================= Add Comments Section============================ */}
 

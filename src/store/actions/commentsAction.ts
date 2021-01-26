@@ -51,20 +51,18 @@ export const getCommentsFromFirestoreActionMethod = (
 
 //Thunk Action Method To Get Comments from firestore
 export const getCommentsFromFirestoreThunkAction = (id: string) => {
-  const commentsArr: Array<any> = [];
   return (dispatch: any) => {
+    const commentsArr: Array<any> = [];
     firestoreDB
       .collection("card")
       .doc(id)
       .collection("Comments")
-
       .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((item) => {
           commentsArr.push([item.id, item.data().comment]);
         });
+        dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
+        dispatch(commentsLoadingActionMethod(false));
       });
-    // console.log(commentsArr);
-    dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
-    // dispatch(commentsLoadingActionMethod(false));
   };
 };
