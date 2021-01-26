@@ -43,6 +43,7 @@ function CardCreator() {
         timestamp: timestamp.toString(),
         status: status,
         tag: tag,
+        commentCount: 0,
       })
       .then(() => {
         console.log("added to firestoreDB");

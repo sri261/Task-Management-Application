@@ -1,8 +1,4 @@
-import {
-  GET_COMMENTS_FIRESTORE,
-  EMPTY_REDUX_STORE_COMMENTS,
-  UPDATE_STORE_FIRESTORE,
-} from "../types";
+import { GET_COMMENTS_FIRESTORE, EMPTY_REDUX_STORE_COMMENTS } from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
 import { commentsLoadingActionMethod } from "../../store/actions/CommentLoadingAction";
 
@@ -32,7 +28,7 @@ export const getCommentsFromFirestoreThunkAction = (id: string) => {
       .get()
       .then((doc) => {
         doc.forEach((item) => {
-          commentsArr.push([item.id, item.data().comment]);
+          commentsArr.push([item.id, item.data().comment, item.data().user]);
         });
         dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
         dispatch(commentsLoadingActionMethod(false));

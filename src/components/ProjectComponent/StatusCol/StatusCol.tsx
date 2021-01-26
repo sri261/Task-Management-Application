@@ -42,7 +42,14 @@ function StatusCol(props: any) {
     const entries: any = Object.entries(storeData);
     entries.map((i: any) => {
       if (i[1].status === props.status) {
-        final.push([i[0], i[1].caption, i[1].status, i[1].tag, i[1].timestamp]);
+        final.push([
+          i[0],
+          i[1].caption,
+          i[1].status,
+          i[1].tag,
+          i[1].timestamp,
+          i[1].commentCount,
+        ]);
       }
     });
   };
@@ -69,6 +76,7 @@ function StatusCol(props: any) {
                   status={item[2]}
                   tag={item[3]}
                   timestamp={item[4]}
+                  commentCount={item[5]}
                 />
               );
             })}

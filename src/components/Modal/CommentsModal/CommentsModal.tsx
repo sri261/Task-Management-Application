@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import "firebase/firestore";
+import "firebase/functions";
+import { auth } from "../../../firebase/firebaseIndex";
 import "./CommentsModal.css";
 import { UIState } from "../../../store/types";
 import { firestoreDB } from "../../../firebase/firebaseIndex";
@@ -23,15 +28,22 @@ function CommentsModal() {
 
   const handleCommentSubmit = (e: any) => {
     e.preventDefault();
+    const user = auth().currentUser?.email;
+    console.log(user, "user");
+
     firestoreDB
       .collection("card")
       .doc(cardId)
       .collection("Comments")
       .doc()
-      .set({ comment: comment })
+      .set({ comment: comment, user: user })
       .then(() => {
         console.log("comment added to firestore");
         dispatch(getCommentsFromFirestoreThunkAction(cardId));
+        firestoreDB
+          .collection("card")
+          .doc(cardId)
+          .update({ commentCount: firebase.firestore.FieldValue.increment(1) });
       });
   };
 
@@ -63,7 +75,12 @@ function CommentsModal() {
           <div>
             <ul>
               {commentsFromStore.map((item: any) => {
-                return <li key={item[0]}>{item[1]}</li>;
+                return (
+                  <li key={item[0]}>
+                    {item[1]}
+                    _User:{item[2]}
+                  </li>
+                );
               })}
             </ul>
           </div>

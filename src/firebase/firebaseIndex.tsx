@@ -16,22 +16,7 @@ var firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 firebase.initializeApp(firebaseConfig);
-// firebase.firestore(); /*<--------------------*/
-
-// export const rrfConfig = {
-//   userProfile: "users" /*<--------------------*/,
-//   useFirestoreForProfile: true,
-// };
-
-// export const rrfProps = {
-//   // firebase /*<--------------------*/,
-//   config: rrfConfig,
-//   dispatch: store.dispatch,
-//   createFirestoreInstance,
-// };
 
 export const auth = firebase.auth;
 export const db = firebase.database();
 export const firestoreDB = firebase.firestore();
-
-// export default firebase; /*<--------------------*/

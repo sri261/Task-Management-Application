@@ -96,7 +96,7 @@ function CardComponent(props: any) {
               }}
             >
               <FaCommentAlt />
-              <span className="icon-info">4</span>
+              <span className="icon-info">{props.commentCount}</span>
             </div>
             {/* ====Pins icon===== */}
             <div className="icon" onClick={pinClickHandler}>
