@@ -1,30 +1,11 @@
-import { GET_COMMENTS_FIRESTORE, EMPTY_REDUX_STORE_COMMENTS } from "../types";
+import {
+  GET_COMMENTS_FIRESTORE,
+  EMPTY_REDUX_STORE_COMMENTS,
+  UPDATE_STORE_FIRESTORE,
+} from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
 import { commentsLoadingActionMethod } from "../../store/actions/CommentLoadingAction";
 
-export interface Comments {
-  [id: string]: Comment;
-}
-
-//Comment
-export interface Comment {
-  email: string;
-  comment: string;
-}
-
-export const setCommentsFromFirestoreThunkAction = (comment: string) => {
-  //   return (dispatch: any) => {
-  //     firestoreDB
-  //       .collection("card")
-  //       .doc(cardId)
-  //       .collection("Comments")
-  //       .doc()
-  //       .set({ comment: comment })
-  //       .then(() => {
-  //         console.log("comment added to firestore");
-  //       });
-  //   };
-};
 // =========================================================
 
 //Action To Get Comments from firestore
@@ -51,9 +32,7 @@ export const getCommentsFromFirestoreThunkAction = (id: string) => {
       .get()
       .then((doc) => {
         doc.forEach((item) => {
-          console.log(item.data().comment);
           commentsArr.push([item.id, item.data().comment]);
-          console.log(commentsArr);
         });
         dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
         dispatch(commentsLoadingActionMethod(false));
@@ -61,14 +40,6 @@ export const getCommentsFromFirestoreThunkAction = (id: string) => {
       .catch((error) => {
         console.log("error getting document", error);
       });
-
-    // .onSnapshot((querySnapshot) => {
-    //   querySnapshot.forEach((item) => {
-    //     commentsArr.push([item.id, item.data().comment]);
-    //   });
-    //   dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
-    //   dispatch(commentsLoadingActionMethod(false));
-    // });
   };
 };
 

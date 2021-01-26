@@ -6,7 +6,10 @@ import "./CommentsModal.css";
 import { UIState } from "../../../store/types";
 import { firestoreDB } from "../../../firebase/firebaseIndex";
 import { setCardIDActionMethod } from "../../../store/actions/actions";
-import { emptyCommentsStoreActionMethod } from "../../../store/actions/commentsAction";
+import {
+  emptyCommentsStoreActionMethod,
+  getCommentsFromFirestoreThunkAction,
+} from "../../../store/actions/commentsAction";
 
 function CommentsModal() {
   const commentModalState = useSelector<UIState>((state) => state.show);
@@ -20,7 +23,6 @@ function CommentsModal() {
 
   const handleCommentSubmit = (e: any) => {
     e.preventDefault();
-    // dispatch(setCardIDActionMethod(comment));
     firestoreDB
       .collection("card")
       .doc(cardId)
@@ -29,6 +31,7 @@ function CommentsModal() {
       .set({ comment: comment })
       .then(() => {
         console.log("comment added to firestore");
+        dispatch(getCommentsFromFirestoreThunkAction(cardId));
       });
   };
 
@@ -60,7 +63,6 @@ function CommentsModal() {
           <div>
             <ul>
               {commentsFromStore.map((item: any) => {
-                console.log(item[1]);
                 return <li key={item[0]}>{item[1]}</li>;
               })}
             </ul>
