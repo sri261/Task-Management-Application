@@ -68,20 +68,23 @@ function StatusCol(props: any) {
       <div className="card-container">
         {storeReady ? (
           <div>
-            {firestoreData.map((item: any) => {
-              return (
-                <CardComponent
-                  key={item[0]}
-                  id={item[0]}
-                  caption={item[1]}
-                  status={item[2]}
-                  tag={item[3]}
-                  timestamp={item[4]}
-                  commentCount={item[5]}
-                  pins={item[6]}
-                />
-              );
-            })}
+            {firestoreData
+              .slice(0)
+              .reverse()
+              .map((item: any) => {
+                return (
+                  <CardComponent
+                    key={item[0]}
+                    id={item[0]}
+                    caption={item[1]}
+                    status={item[2]}
+                    tag={item[3]}
+                    timestamp={item[4]}
+                    commentCount={item[5]}
+                    pins={item[6]}
+                  />
+                );
+              })}
           </div>
         ) : (
           <div>Loading...</div>

@@ -38,17 +38,19 @@ export const fireDataToStoreThunkActionMethod = (): ThunkAction<
     let tasks: Store = {};
     // const tasks: any = {};
 
-    // console.log("Thunk Action Method Reached");
-    firestoreDB.collection("card").onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const data: Task = doc.data();
-        tasks[doc.id] = data;
-        // tasks = Object.assign(tasks, { [doc.id]: data });
-      });
+    firestoreDB
+      .collection("card")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const data: Task = doc.data();
+          tasks[doc.id] = data;
+          // tasks = Object.assign(tasks, { [doc.id]: data });
+        });
 
-      dispatch(fireDataToStoreActionMethod(tasks));
-      dispatch(StoreReadyActionMethod(true));
-    });
+        dispatch(fireDataToStoreActionMethod(tasks));
+        dispatch(StoreReadyActionMethod(true));
+      });
   };
 };
 
