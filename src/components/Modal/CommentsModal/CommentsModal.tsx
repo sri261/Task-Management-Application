@@ -29,6 +29,7 @@ function CommentsModal() {
   const handleCommentSubmit = (e: any) => {
     e.preventDefault();
     const user = auth().currentUser?.email;
+    const timestamp = new Date().toISOString();
     console.log(user, "user");
 
     firestoreDB
@@ -36,7 +37,7 @@ function CommentsModal() {
       .doc(cardId)
       .collection("Comments")
       .doc()
-      .set({ comment: comment, user: user })
+      .set({ comment: comment, user: user, timestamp: timestamp })
       .then(() => {
         console.log("comment added to firestore");
         dispatch(getCommentsFromFirestoreThunkAction(cardId));

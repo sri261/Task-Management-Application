@@ -25,10 +25,16 @@ export const getCommentsFromFirestoreThunkAction = (id: string) => {
       .collection("card")
       .doc(id)
       .collection("Comments")
+      .orderBy("timestamp", "asc")
       .get()
       .then((doc) => {
         doc.forEach((item) => {
-          commentsArr.push([item.id, item.data().comment, item.data().user]);
+          commentsArr.push([
+            item.id,
+            item.data().comment,
+            item.data().user,
+            item.data().timestamp,
+          ]);
         });
         dispatch(getCommentsFromFirestoreActionMethod(commentsArr));
         dispatch(commentsLoadingActionMethod(false));
