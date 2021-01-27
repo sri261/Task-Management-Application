@@ -4,6 +4,11 @@ import {
   SetCardID,
 } from "../store/actions/actions";
 import { CommentsLoading } from "../store/actions/CommentLoadingAction";
+import {
+  TagStateUpdateAction,
+  AddTagToStore,
+  TagLoadingAction,
+} from "../store/actions/UiActions";
 
 export const MODAL = "MODAL";
 export const FIRE_TO_STORE = "FIRE_TO_STORE";
@@ -17,6 +22,9 @@ export const EMPTY_REDUX_STORE_COMMENTS = "EMPTY_REDUX_STORE_COMMENTS";
 export const CURRENT_USER = "CURRENT_USER";
 export const UPDATE_STORE_FIRESTORE = "UPDATE_STORE_FIRESTORE";
 export const UPDATE_PIN = "UPDATE_PIN";
+export const UPDATE_TAG_FROM_FIRE = "UPDATE_TAG_FROM_FIRE";
+export const ADD_TAG_TO_STORE = "ADD_TAG_TO_STORE";
+export const TAGS_LOADING = "TAGS_LOADING";
 //Store
 export interface Store {
   [id: string]: Task;
@@ -32,11 +40,20 @@ export interface Task {
   };
 }
 
+export interface Tag {
+  [tag: string]: {
+    backgroundColor: string;
+    color: string;
+  };
+}
+
 export interface UIState {
   show: boolean;
   fireDataLoaded: boolean;
   cardID: string;
   commentsLoading: boolean;
+  tags: Tag;
+  tagsLoading: boolean;
 }
 export interface CurrentUserState {
   email: string;
@@ -52,4 +69,7 @@ export type UiAction =
   | StoreReadyAction
   | SetEmailAction
   | SetCardID
-  | CommentsLoading;
+  | CommentsLoading
+  | TagStateUpdateAction
+  | AddTagToStore
+  | TagLoadingAction;

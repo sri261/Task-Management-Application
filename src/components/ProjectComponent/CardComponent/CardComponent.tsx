@@ -20,15 +20,41 @@ import { updatePinActionMethod } from "../../../store/actions/actions";
 // REVIEW: Stay away from any
 function CardComponent(props: any) {
   const modalState = useSelector<UIState>((state) => state.show);
+  const tagColors: any = useSelector<any>((state) => state.uiReducer.tags);
+  const tagLoading: any = useSelector<any>(
+    (state) => state.uiReducer.tagsLoading
+  );
+
+  const tagEntries = Object.entries(tagColors);
+
+  const PropsTag = props.tag;
+  let bgProp, colorProp;
+
+  const temp = () => {
+    if (!tagLoading) {
+      tagEntries.forEach((item: any) => {
+        if (item[0] == PropsTag) {
+          bgProp = item[1].background;
+          colorProp = item[1].color;
+        }
+      });
+    } else {
+      console.log("loading");
+    }
+  };
+  temp();
+
   const dispatch = useDispatch();
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
   const [cardID, setCardID] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
+
   const pinClickHandler = () => {
     setPincount(pincount + 1);
     dispatch(updatePinActionMethod(2, cardID));
   };
+
   const dateFn = () => {
     const monthsArray = [
       "Jan",
@@ -68,6 +94,7 @@ function CardComponent(props: any) {
 
   useEffect(() => {
     setCardID(props.id);
+    // temp();
   }, []);
   return (
     <>
@@ -75,7 +102,13 @@ function CardComponent(props: any) {
         {/* ================= Top Bar============================ */}
         <div className="card-top-bar">
           {/* ==== Tag Component===== */}
-          <Tag tag={props.tag} />
+          {tagLoading ? (
+            <div>Loading</div>
+          ) : (
+            <Tag tag={props.tag} background={bgProp} color={colorProp} />
+          )}
+          {/* <Tag tag={props.tag} /> */}
+
           {/* ==== Info Dots Icon ===== */}
           <div>
             <BsThreeDots />

@@ -76,10 +76,12 @@ function CommentsModal() {
           <div>
             <ul>
               {commentsFromStore.map((item: any) => {
+                const date = new Date(item[3]).toTimeString();
                 return (
                   <li key={item[0]}>
                     {item[1]}
                     _User:{item[2]}
+                    _time:{date}
                   </li>
                 );
               })}
