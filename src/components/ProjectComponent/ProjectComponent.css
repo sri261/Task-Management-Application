@@ -5,12 +5,9 @@
 .below-navbar {
   display: flex;
   flex-direction: row;
-  /* width: 15%; */
 }
 .project-component-sub {
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 75%;
+  width: 86%;
   margin-left: 25px;
   margin-right: 25px;
 }
@@ -20,4 +17,7 @@
   left: 25%;
 }
 .side-bar {
+  /* width: 14%; */
+  height: 92vh;
+  border-left: 1px solid #c2c7d3;
 }

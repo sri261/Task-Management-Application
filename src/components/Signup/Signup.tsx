@@ -11,12 +11,15 @@ const Signup = (props: any) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setError(null);
-    const { email, password } = e.target;
-    console.log(email.value, password.value);
+    const { email, password, name } = e.target;
+    console.log(email.value, password.value, name.value);
     auth()
       .createUserWithEmailAndPassword(email.value, password.value)
-      .then(() => {
+      .then((result) => {
         props.history.push("/");
+        return result.user?.updateProfile({
+          displayName: name.value,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -27,6 +30,7 @@ const Signup = (props: any) => {
     <div className="bg">
       <form className="signup" onSubmit={handleSubmit}>
         <h2 className="title">SignUp</h2>
+        <input className="input" required name="name" placeholder="Name" />
         <input className="input" required name="email" placeholder="email" />
         <input
           className="input"

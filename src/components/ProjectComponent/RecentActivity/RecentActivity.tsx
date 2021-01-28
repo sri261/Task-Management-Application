@@ -1,7 +1,10 @@
-import { KeyObject } from "crypto";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import "./RecentActivity.css";
 import { getRecentActivityFromFireThunkAction } from "../../../store/actions/recentActions";
+import Activities from "./Activities/Activities";
+
 function RecentActivity() {
   const recentLoading: any = useSelector<any>(
     (state) => state.uiReducer.recentLoading
@@ -15,20 +18,22 @@ function RecentActivity() {
   }, []);
 
   return (
-    <div>
-      <h3>Recent Activity</h3>
-      <ul>
-        {activities
-          // .slice(0)
-          // .reverse()
-          .map((activity: any) => {
-            return (
-              <li key={activity[3]}>
-                {activity[1]} added a new {activity[0]}
-              </li>
-            );
-          })}
-      </ul>
+    <div className="rec-act">
+      <div className="rec-act-title">Recent Activity</div>
+      {activities
+        .slice(0, 5) //---------------make dynamic
+        // .reverse()
+        .map((activity: any) => {
+          return (
+            <Activities
+              typeOfActivity={activity[0]}
+              user={activity[1]}
+              timestamp={activity[2]}
+              name={activity[3]}
+              key={activity[4]}
+            />
+          );
+        })}
     </div>
   );
 }

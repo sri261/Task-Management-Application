@@ -36,7 +36,7 @@ function ProjectComponent() {
               </div>
             </div>
             {/* ------------------------------------- */}
-            <div className="side- bar">
+            <div className="side-bar">
               <RecentActivity />
             </div>
           </div>

@@ -1,0 +1,26 @@
+.act {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 70px 30px 50px;
+  width: 100%;
+  line-height: 22px;
+}
+.act-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 95%;
+  color: #585770;
+}
+.act-act {
+  display: flex;
+  flex-wrap: wrap;
+}
+.act-user {
+  /* font-size: %; */
+  font-weight: 500;
+  color: black;
+  /* color: ; */
+}
+.act-date {
+  color: #979899;
+}

@@ -38,8 +38,8 @@ function CardCreator() {
     const timestamp = new Date().toISOString();
     e.preventDefault();
     dispatch(recentActivityToStoreActionMethod("card", user));
+    addRecentActivityToFireMethod("card", user);
 
-    // addRecentActivityToFireMethod,
     dispatch(
       updateStore({
         new12: {
@@ -154,7 +154,7 @@ function CardCreator() {
           </form>
         </div>
       ) : (
-        <div onClick={() => setShow(true)}>"+ Add Card"</div>
+        <div onClick={() => setShow(true)}>+ Add Card</div>
       )}
     </div>
   );
