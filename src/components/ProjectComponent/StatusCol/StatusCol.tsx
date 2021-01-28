@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { css } from "@emotion/core";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 import "./StatusCol.css";
 import CardCreator from "../CardCreator/CardCreator";
@@ -64,7 +66,10 @@ function StatusCol(props: any) {
               })}
           </div>
         ) : (
-          <div>Loading...</div>
+          <div className="loader">
+            <PropagateLoader color={"#f40ba6"} size={10} />
+            {/* Loading...   */}
+          </div>
         )}
       </div>
 

@@ -26,7 +26,7 @@ function Activities(props: any) {
           <div className="act-user">{props.name}</div>
           {/* ----------------added a--------------- */}
           <div> &nbsp; added a &nbsp;</div>
-        </div>{" "}
+        </div>
         {/* ----------------activity--------------- */}
         <div>{props.typeOfActivity}</div>
         {/* ----------------timestamp--------------- */}

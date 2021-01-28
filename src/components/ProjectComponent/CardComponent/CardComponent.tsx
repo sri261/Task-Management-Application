@@ -5,6 +5,18 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePaperClip, AiFillFlag } from "react-icons/ai";
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
+import Dropdown from "rc-dropdown";
+import Menu, { Item as MenuItem } from "rc-menu";
+import "rc-dropdown/assets/index.css";
+import TextareaAutosize from "react-textarea-autosize";
+import { IoMdSend } from "react-icons/io";
+import "firebase/auth";
+import "firebase/database";
+import "firebase/firestore";
+import "firebase/functions";
+import { auth } from "../../../firebase/firebaseIndex";
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import "./CardComponent.css";
 import "./CaptionComponent/CaptionComponent";
@@ -16,6 +28,11 @@ import {
 } from "../../../store/actions/actions";
 import { getCommentsFromFirestoreThunkAction } from "../../../store/actions/commentsAction";
 import { updatePinActionMethod } from "../../../store/actions/actions";
+import { firestoreDB } from "../../../firebase/firebaseIndex";
+import {
+  recentActivityToStoreActionMethod,
+  addRecentActivityToFireMethod,
+} from "../../../store/actions/recentActions";
 
 // REVIEW: Stay away from any
 //------check card component number of renders
@@ -28,6 +45,21 @@ function CardComponent(props: any) {
   const PropsTag = props.tag;
   let bgProp, colorProp;
 
+  const menu = (
+    <Menu style={{ width: 140 }} multiple>
+      <MenuItem
+        key="1"
+        onClick={() => {
+          editCaptionFn();
+        }}
+      >
+        Edit
+      </MenuItem>
+
+      <MenuItem key="2">Archive</MenuItem>
+      <MenuItem disabled></MenuItem>
+    </Menu>
+  );
   const temp = () => {
     if (!tagLoading) {
       const tagEntries = Object.entries(tagColors);
@@ -38,9 +70,6 @@ function CardComponent(props: any) {
         }
       });
     }
-    // else {
-    //   // console.log("loading");
-    // }
   };
   temp();
 
@@ -48,6 +77,7 @@ function CardComponent(props: any) {
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
   const [cardID, setCardID] = useState("");
+  const [newCaption, setNewCaption] = useState("");
 
   const pinClickHandler = () => {
     setPincount(pincount + 1);
@@ -82,7 +112,30 @@ function CardComponent(props: any) {
   });
 
   const editCaptionFn = () => {
+    const user: any = auth().currentUser?.displayName;
+
     if (editCaption) {
+      const dateTodb = new Date().toISOString();
+      firestoreDB
+        .collection("card")
+        // .doc(caption)
+        .doc(cardID)
+        .update({
+          caption: newCaption,
+          timestamp: dateTodb,
+          // status: status,
+          // tag: tag,
+          // commentCount: 0,
+          // pins: 0,
+        })
+        .then(() => {
+          console.log("added to firestoreDB");
+          dispatch(recentActivityToStoreActionMethod("Edited a task", user));
+          addRecentActivityToFireMethod("Edited a task", user);
+        })
+        .catch((error) => {
+          console.log("Error adding to firestoreDB", error);
+        });
       setEditCaption(false);
     } else if (editCaption === false) {
       setEditCaption(true);
@@ -94,7 +147,6 @@ function CardComponent(props: any) {
 
   useEffect(() => {
     setCardID(props.id);
-    // temp();
   }, []);
   return (
     <>
@@ -109,8 +161,17 @@ function CardComponent(props: any) {
           )}
 
           {/* ==== Info Dots Icon ===== */}
-          <div>
-            <BsThreeDots />
+          <div className="info-dots">
+            <Dropdown
+              trigger={["click"]}
+              //  onVisibleChange={this.onVisibleChange}
+              //  visible={this.state.visible}
+              //  closeOnSelect={false}
+              overlay={menu}
+              animation="slide-up"
+            >
+              <BsThreeDots />
+            </Dropdown>
           </div>
         </div>
         {/* ================= Caption Section============================ */}
@@ -118,19 +179,26 @@ function CardComponent(props: any) {
           {editCaption ? (
             <div>
               {editCaption ? (
-                <form onSubmit={editCaptionFn}>
-                  <input
-                    className="card-component-caption-input"
-                    value={tempFn()}
-                  />
-
-                  {/* <button type="submit" onClick={editCaptionFn}> */}
-                  <button type="submit">Done</button>
-                </form>
+                <div className="card-form">
+                  <form onSubmit={editCaptionFn}>
+                    <div className="card-textarea">
+                      <TextareaAutosize
+                        autoFocus
+                        defaultValue={props.caption}
+                        onChange={(e) => {
+                          setNewCaption(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <button type="submit">
+                      <IoMdSend />
+                    </button>
+                  </form>
+                </div>
               ) : null}
             </div>
           ) : (
-            <div onClick={editCaptionFn}>
+            <div className="card-caption">
               <p>{props.caption} </p>
             </div>
           )}
