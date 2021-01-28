@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { useFirestore } from "react-redux-firebase";
 import { AiOutlineClose } from "react-icons/ai";
 import { firestoreDB } from "../../../firebase/firebaseIndex";
 import { useDispatch } from "react-redux";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import "firebase/firestore";
+import "firebase/functions";
+import { auth } from "../../../firebase/firebaseIndex";
 
 import "./CardCreator.css";
 import { updateStore } from "../../../store/actions/actions";
 import { addTagToStore } from "../../../store/actions/UiActions";
+import {
+  recentActivityToStoreActionMethod,
+  addRecentActivityToFireMethod,
+} from "../../../store/actions/recentActions";
 
 function CardCreator() {
   const [caption, setCaption] = useState("");
@@ -23,10 +32,14 @@ function CardCreator() {
   ];
   const index = Math.floor(Math.random() * 4);
   const tagColor: Array<any> = colorArray[index];
+  const user: any = auth().currentUser?.email;
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
     const timestamp = new Date().toISOString();
+    e.preventDefault();
+    dispatch(recentActivityToStoreActionMethod("card", user));
+
+    // addRecentActivityToFireMethod,
     dispatch(
       updateStore({
         new12: {

@@ -8,6 +8,7 @@ import {
   TagStateUpdateAction,
   AddTagToStore,
   TagLoadingAction,
+  SetRecentLoading,
 } from "../store/actions/UiActions";
 
 export const MODAL = "MODAL";
@@ -25,6 +26,10 @@ export const UPDATE_PIN = "UPDATE_PIN";
 export const UPDATE_TAG_FROM_FIRE = "UPDATE_TAG_FROM_FIRE";
 export const ADD_TAG_TO_STORE = "ADD_TAG_TO_STORE";
 export const TAGS_LOADING = "TAGS_LOADING";
+export const SET_RECENT_LOADING = "SET_RECENT_LOADING";
+export const UPDATE_RECENT_STORE = "UPDATE_RECENT_STORE";
+export const RECENT_ACTIVITY_TO_STORE = "RECENT_ACTIVITY_TO_STORE";
+
 //Store
 export interface Store {
   [id: string]: Task;
@@ -54,6 +59,7 @@ export interface UIState {
   commentsLoading: boolean;
   tags: Tag;
   tagsLoading: boolean;
+  recentLoading: boolean;
 }
 export interface CurrentUserState {
   email: string;
@@ -72,4 +78,5 @@ export type UiAction =
   | CommentsLoading
   | TagStateUpdateAction
   | AddTagToStore
-  | TagLoadingAction;
+  | TagLoadingAction
+  | SetRecentLoading;

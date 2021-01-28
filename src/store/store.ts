@@ -4,9 +4,9 @@ import thunk from "redux-thunk";
 import { Reducer } from "../store/reducers/Reducer";
 import { uiReducer } from "./reducers/uiReducer";
 import { commentsReducer } from "../store/reducers/commentsReducer";
-// const store = createStore(Reducer, applyMiddleware(thunk));
+import { recentReducer } from "../store/reducers/recentReducer";
 const store = createStore(
-  combineReducers({ Reducer, uiReducer, commentsReducer }),
+  combineReducers({ Reducer, uiReducer, commentsReducer, recentReducer }),
   applyMiddleware(thunk)
 );
 

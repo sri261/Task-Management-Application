@@ -8,8 +8,10 @@ import {
   UPDATE_TAG_FROM_FIRE,
   ADD_TAG_TO_STORE,
   TAGS_LOADING,
+  SET_RECENT_LOADING,
 } from "../types";
 import { UiAction } from "../types";
+
 const initialState: UIState = {
   show: false,
   fireDataLoaded: false,
@@ -17,6 +19,7 @@ const initialState: UIState = {
   commentsLoading: true,
   tags: {},
   tagsLoading: true,
+  recentLoading: true,
 };
 
 export const uiReducer = (state: UIState = initialState, action: UiAction) => {
@@ -38,6 +41,8 @@ export const uiReducer = (state: UIState = initialState, action: UiAction) => {
       return { ...state, tags: temp };
     case TAGS_LOADING:
       return { ...state, tagsLoading: action.payload };
+    case SET_RECENT_LOADING:
+      return { ...state, recentLoading: action.payload };
     default:
       return state;
   }

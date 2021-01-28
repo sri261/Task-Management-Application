@@ -18,29 +18,29 @@ import { getCommentsFromFirestoreThunkAction } from "../../../store/actions/comm
 import { updatePinActionMethod } from "../../../store/actions/actions";
 
 // REVIEW: Stay away from any
+//------check card component number of renders
 function CardComponent(props: any) {
   const modalState = useSelector<UIState>((state) => state.show);
   const tagColors: any = useSelector<any>((state) => state.uiReducer.tags);
   const tagLoading: any = useSelector<any>(
     (state) => state.uiReducer.tagsLoading
   );
-
-  const tagEntries = Object.entries(tagColors);
-
   const PropsTag = props.tag;
   let bgProp, colorProp;
 
   const temp = () => {
     if (!tagLoading) {
+      const tagEntries = Object.entries(tagColors);
       tagEntries.forEach((item: any) => {
         if (item[0] == PropsTag) {
           bgProp = item[1].background;
           colorProp = item[1].color;
         }
       });
-    } else {
-      console.log("loading");
     }
+    // else {
+    //   // console.log("loading");
+    // }
   };
   temp();
 
@@ -48,13 +48,12 @@ function CardComponent(props: any) {
   const [pincount, setPincount]: any = useState(0);
   const [editCaption, setEditCaption] = useState(false);
   const [cardID, setCardID] = useState("");
-  const [showTooltip, setShowTooltip] = useState(false);
 
   const pinClickHandler = () => {
     setPincount(pincount + 1);
     dispatch(updatePinActionMethod(2, cardID));
   };
-
+  //--------------Fix this
   const dateFn = () => {
     const monthsArray = [
       "Jan",
@@ -81,6 +80,7 @@ function CardComponent(props: any) {
     month: "short",
     day: "numeric",
   });
+
   const editCaptionFn = () => {
     if (editCaption) {
       setEditCaption(false);
@@ -105,9 +105,9 @@ function CardComponent(props: any) {
           {tagLoading ? (
             <div>Loading</div>
           ) : (
+            // <div>done</div>
             <Tag tag={props.tag} background={bgProp} color={colorProp} />
           )}
-          {/* <Tag tag={props.tag} /> */}
 
           {/* ==== Info Dots Icon ===== */}
           <div>
@@ -151,9 +151,6 @@ function CardComponent(props: any) {
             <Tippy content="sample">
               <div
                 className="icon comment-icon"
-                onMouseOver={() => {
-                  setShowTooltip(true);
-                }}
                 onClick={() => {
                   dispatch(changeModalActionMethod(true));
                   dispatch(setCardIDActionMethod(cardID));

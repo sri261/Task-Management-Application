@@ -25,14 +25,12 @@ function App() {
           //redirect to signin page
           <Redirect to={{ pathname: "/login", state: { from: location } }} />
         )
-        */}
+        */}{" "}
         {isAuthenticated.isAuthenticated ? (
           <Route exact path="/" render={() => <ProjectComponent />} />
         ) : null}
-
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
-
         <Route path="" component={Signin} />
       </Switch>
       {/* <a href="/signup">Signup</a> */}

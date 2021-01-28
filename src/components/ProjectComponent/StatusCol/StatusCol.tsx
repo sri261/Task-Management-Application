@@ -4,33 +4,11 @@ import { useSelector } from "react-redux";
 import "./StatusCol.css";
 import CardCreator from "../CardCreator/CardCreator";
 import CardComponent from "../CardComponent/CardComponent";
-import { firestoreDB } from "../../../firebase/firebaseIndex";
 import { Task } from "../../../store/types";
 
 function StatusCol(props: any) {
   const [firestoreData, setFirestoreData] = useState<any>([]);
 
-  // const fetchCaptions = () => {
-  //   const final: Array<any> = [];
-
-  //   firestoreDB.collection("card").onSnapshot((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       if (doc.data().status == props.status) {
-  //         final.push([
-  //           doc.data().caption,
-  //           doc.data().status,
-  //           doc.data().tag,
-  //           doc.data().timestamp,
-  //           doc.id,
-  //         ]);
-  //       }
-  //     });
-
-  //     setFirestoreData(final);
-  //     setLoading(false);
-  //   });
-  // };
-  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   const storeData: any = useSelector<Task>((state) => state.Reducer);
   const storeReady: any = useSelector<any>(
     (state) => state.uiReducer.fireDataLoaded
@@ -38,7 +16,6 @@ function StatusCol(props: any) {
   const temp: any = useSelector<any>((state) => state.Reducer);
   const final: Array<any> = [];
   const fetchStoreData = () => {
-    // console.log(temp, "temp");
     const entries: any = Object.entries(storeData);
     entries.map((i: any) => {
       if (i[1].status === props.status) {

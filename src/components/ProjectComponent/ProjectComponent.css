@@ -2,7 +2,15 @@
   display: flex;
   flex-direction: row;
 }
+.below-navbar {
+  display: flex;
+  flex-direction: row;
+  /* width: 15%; */
+}
 .project-component-sub {
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 75%;
   margin-left: 25px;
   margin-right: 25px;
 }
@@ -10,4 +18,6 @@
   position: absolute;
   top: 20%;
   left: 25%;
+}
+.side-bar {
 }

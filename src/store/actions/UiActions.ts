@@ -3,6 +3,7 @@ import {
   Tag,
   ADD_TAG_TO_STORE,
   TAGS_LOADING,
+  SET_RECENT_LOADING,
 } from "../types";
 import { firestoreDB } from "../../firebase/firebaseIndex";
 // =======================================================
@@ -59,5 +60,20 @@ export interface TagLoadingAction {
 //tag loading action
 export const tagLoadingActionMethod = (input: boolean): TagLoadingAction => {
   return { type: TAGS_LOADING, payload: input };
+};
+// =======================================================
+//recent loading Action
+export interface SetRecentLoading {
+  type: typeof SET_RECENT_LOADING;
+  payload: boolean;
+}
+//recent loading Action Method
+export const setRecentLoadingActionMethod = (
+  payload: boolean
+): SetRecentLoading => {
+  return {
+    type: SET_RECENT_LOADING,
+    payload: payload,
+  };
 };
 // =======================================================

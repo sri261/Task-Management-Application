@@ -15,7 +15,7 @@ import {
   emptyCommentsStoreActionMethod,
   getCommentsFromFirestoreThunkAction,
 } from "../../../store/actions/commentsAction";
-
+import { recentActivityToStoreActionMethod } from "../../../store/actions/recentActions";
 function CommentsModal() {
   const commentModalState = useSelector<UIState>((state) => state.show);
   const cardId: any = useSelector<any>((state) => state.uiReducer.cardID);
@@ -30,8 +30,8 @@ function CommentsModal() {
     e.preventDefault();
     const user = auth().currentUser?.email;
     const timestamp = new Date().toISOString();
+    dispatch(recentActivityToStoreActionMethod("comment", user));
     console.log(user, "user");
-
     firestoreDB
       .collection("card")
       .doc(cardId)
