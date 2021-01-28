@@ -105,7 +105,6 @@ function CardComponent(props: any) {
           {tagLoading ? (
             <div>Loading</div>
           ) : (
-            // <div>done</div>
             <Tag tag={props.tag} background={bgProp} color={colorProp} />
           )}
 

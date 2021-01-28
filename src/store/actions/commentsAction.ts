@@ -34,6 +34,7 @@ export const getCommentsFromFirestoreThunkAction = (id: string) => {
             item.data().comment,
             item.data().user,
             item.data().timestamp,
+            item.data().name,
           ]);
         });
         dispatch(getCommentsFromFirestoreActionMethod(commentsArr));

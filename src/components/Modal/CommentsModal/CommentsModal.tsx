@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
+import { IoMdSend } from "react-icons/io";
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -10,7 +12,7 @@ import { auth } from "../../../firebase/firebaseIndex";
 import "./CommentsModal.css";
 import { UIState } from "../../../store/types";
 import { firestoreDB } from "../../../firebase/firebaseIndex";
-import { setCardIDActionMethod } from "../../../store/actions/actions";
+// import { setCardIDActionMethod } from "../../../store/actions/actions";
 import {
   emptyCommentsStoreActionMethod,
   getCommentsFromFirestoreThunkAction,
@@ -19,6 +21,8 @@ import {
   recentActivityToStoreActionMethod,
   addRecentActivityToFireMethod,
 } from "../../../store/actions/recentActions";
+import Comment from "../CommentsModal/Comment/Comment";
+
 function CommentsModal() {
   const commentModalState = useSelector<UIState>((state) => state.show);
   const cardId: any = useSelector<any>((state) => state.uiReducer.cardID);
@@ -32,6 +36,7 @@ function CommentsModal() {
   const handleCommentSubmit = (e: any) => {
     e.preventDefault();
     const user = auth().currentUser?.email;
+    const name = auth().currentUser?.displayName;
 
     const timestamp = new Date().toISOString();
     dispatch(recentActivityToStoreActionMethod("comment", user));
@@ -42,7 +47,7 @@ function CommentsModal() {
       .doc(cardId)
       .collection("Comments")
       .doc()
-      .set({ comment: comment, user: user, timestamp: timestamp })
+      .set({ comment: comment, user: user, timestamp: timestamp, name: name })
       .then(() => {
         console.log("comment added to firestore");
         dispatch(getCommentsFromFirestoreThunkAction(cardId));
@@ -78,19 +83,19 @@ function CommentsModal() {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div>
-            <ul>
-              {commentsFromStore.map((item: any) => {
-                const date = new Date(item[3]).toTimeString();
-                return (
-                  <li key={item[0]}>
-                    {item[1]}
-                    _User:{item[2]}
-                    _time:{date}
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="comments-display">
+            {commentsFromStore.map((item: any) => {
+              const date = new Date(item[3]).toISOString();
+              return (
+                <Comment
+                  key={item[0]}
+                  name={item[4]}
+                  comment={item[1]}
+                  user={item[2]}
+                  timestamp={date}
+                />
+              );
+            })}
           </div>
         )}
 
@@ -104,7 +109,9 @@ function CommentsModal() {
               }}
             ></textarea>
 
-            <button type="submit">Done</button>
+            <button type="submit">
+              <IoMdSend />
+            </button>
           </form>
         </div>
       </div>
